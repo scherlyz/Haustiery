@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Article Detail - Haustiery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Poppins', sans-serif;
+            }
+        }
+        @layer components {
+            .glow-paw {
+                color: #f26a1b;
+                font-size: 22px;
+                animation: glow 2s infinite alternate;
+                text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+            }
+            @keyframes glow {
+                from {
+                    text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+                }
+                to {
+                    text-shadow: 0 0 10px #ff944d, 0 0 20px #ff944d, 0 0 30px #ff944d;
+                }
+            }
+            .nav-link.active::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                height: 2px;
+                width: 100%;
+                background: orange;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none; /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+            }
+            /* New or Modified Styles */
+            .article-image-container {
+                border-radius: 1rem; /* Rounded corners for the image container */
+                overflow: hidden;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+                margin-bottom: 2rem;
+                transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            }
+            .article-image-container:hover {
+                transform: translateY(-5px); /* Lift on hover */
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+            }
+            .article-image-container img {
+                transition: transform 0.3s ease-in-out;
+            }
+            .article-image-container:hover img {
+                transform: scale(1.03); /* Slight zoom on image hover */
+            }
+            .back-button {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                background-color: #0a3b4a;
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 9999px; /* Pill shape */
+                transition: background-color 0.3s ease-in-out, transform 0.2s ease-out;
+            }
+            .back-button:hover {
+                background-color: #f26a1b;
+                transform: translateX(-5px);
+            }
+            .comment-card {
+                background-color: #fcfcfc; /* Lighter background for comments */
+                border: 1px solid #e5e7eb; /* Subtle border */
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+                transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            }
+            .comment-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            }
+            .form-input-field {
+                border: 1px solid #d1d5db; /* Default border */
+                border-radius: 0.5rem;
+                padding: 0.75rem 1rem;
+                transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            }
+            .form-input-field:focus {
+                border-color: #f26a1b; /* Orange border on focus */
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(242, 106, 27, 0.2); /* Orange glow on focus */
+            }
+            .submit-comment-btn {
+                background-color: #f26a1b;
+                color: white;
+                font-weight: 600; /* Semibold */
+                padding: 0.75rem 2rem;
+                border-radius: 9999px; /* Pill shape */
+                transition: background-color 0.3s ease-in-out, transform 0.2s ease-out;
+            }
+            .submit-comment-btn:hover {
+                background-color: #ff7a3d;
+                transform: translateY(-2px);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden bg-gradient-to-r from-[#f8f0db] via-[#e6dcc5] to-[#0a3b4a]">
+
+    <header class="py-5">
+        <div class="nav flex justify-between items-center px-4 md:px-10 max-w-7xl mx-auto">
+            <div class="logo font-bold text-xl flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-2 text-inherit no-underline">
+                    <i class="fas fa-paw glow-paw"></i> Haustiery
+                </a>
+            </div>
+            <nav class="hidden md:flex">
+                <a href="index.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Home</a>
+                <a href="archive-article.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200 active">Articles</a>
+                <a href="product-catalog.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Shop</a>
+                <a href="services.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Services</a>
+                <a href="contact.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Contact</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="cart.html" class="text-gray-800 hover:text-[#f26a1b] transition-colors duration-200" aria-label="Shopping Cart">
+                  <i class="fas fa-shopping-cart text-xl"></i>
+                </a>
+                <a href="user-profile.html" class="flex items-center text-gray-800 hover:text-[#f26a1b] transition-colors duration-200">
+                  <i class="fa fa-user text-xl sm:mr-1"></i>
+                  <span class="hidden sm:inline font-medium">Sherly</span>
+                </a>
+              </div>
+        </div>
+    </header>
+
+    <main class="min-h-[60vh] py-8 px-4 md:px-8">
+        <section class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-2xl shadow-lg">
+            <a href="archive-article.html" class="back-button mb-6">
+                <i class="fas fa-arrow-left"></i> Back to All Articles
+            </a>
+
+            <div class="article-image-container">
+                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Cat" class="w-full h-80 object-cover">
+            </div>
+
+            <h1 class="text-3xl md:text-4xl font-bold text-[#0a3b4a] mb-3 leading-tight">Tips for Caring for Your Pet Cat to Keep Them Healthy and Happy</h1>
+            <p class="text-sm text-gray-600 mb-8 flex items-center gap-2">
+                <i class="fas fa-user-edit text-[#f26a1b]"></i> By: Haustiery Admin 
+                <span class="mx-1">|</span> 
+                <i class="fas fa-calendar-alt text-[#f26a1b]"></i> May 20, 2025 
+                <span class="mx-1">|</span> 
+                <i class="fas fa-tag text-[#f26a1b]"></i> Category: Cats
+            </p>
+
+            <div class="prose max-w-none text-gray-700 leading-relaxed text-base md:text-lg">
+                <p class="mb-4 first-letter:text-5xl first-letter:font-bold first-letter:text-[#f26a1b] first-letter:mr-2 first-letter:float-left">
+                    Caring for a pet cat is not just about providing food and water; it also involves attention, affection, and understanding their needs. A well-cared-for cat will be a loyal and happy companion for you.
+                </p>
+                
+                <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-3 mt-8 border-b-2 border-[#f26a1b] pb-2 inline-block">Proper Nutrition</h2>
+                <p class="mb-4">
+                    Choose high-quality cat food formulated for your cat's age and health condition. There are many options for dry and wet food on the market. Always ensure they have access to clean, fresh water.
+                </p>
+
+                <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-3 mt-8 border-b-2 border-[#f26a1b] pb-2 inline-block">Health and Hygiene</h2>
+                <p class="mb-4">
+                    Schedule regular visits to the vet for vaccinations, health check-ups, and deworming. Keep the litter box clean to ensure your cat's comfort and to prevent illness. Bathe your cat if necessary, although most cats are quite good at grooming themselves.
+                </p>
+
+                <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-3 mt-8 border-b-2 border-[#f26a1b] pb-2 inline-block">Safe and Comfortable Environment</h2>
+                <p class="mb-4">
+                    Provide a comfortable bed, play areas, and a safe space for your cat to explore. Make sure there are no dangerous objects or poisonous plants within reach. A scratching post is also important to maintain their claws and protect your furniture.
+                </p>
+
+                <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-3 mt-8 border-b-2 border-[#f26a1b] pb-2 inline-block">Stimulation and Interaction</h2>
+                <p class="mb-4">
+                    Cats need mental and physical stimulation. Spend time playing with them using interactive toys. Give them enough affection and attention. Every cat has a unique personality, so pay attention to what makes your cat happy and comfortable.
+                </p>
+
+                <p class="mb-4 text-center italic text-gray-800">
+                    "By applying the tips above, you will help your pet cat live a healthy, active, and happy life by your side."
+                </p>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-gray-200">
+                <h2 class="text-2xl font-bold text-[#0a3b4a] mb-6">Comments (2)</h2>
+                
+                <div class="comment-card p-4 rounded-lg mb-4">
+                    <p class="font-semibold text-[#0a3b4a]">User123</p>
+                    <p class="text-gray-600 text-xs mb-2">May 21, 2025, 10:30 AM</p>
+                    <p class="text-gray-700 text-sm">The article is very informative! My cat is much healthier after following these tips.</p>
+                </div>
+
+                <div class="comment-card p-4 rounded-lg mb-4">
+                    <p class="font-semibold text-[#0a3b4a]">CatLover</p>
+                    <p class="text-gray-600 text-xs mb-2">May 22, 2025, 2:00 PM</p>
+                    <p class="text-gray-700 text-sm">Thanks for the guide, it's very helpful for new cat owners like me!</p>
+                </div>
+
+                <h3 class="text-xl font-semibold text-[#0a3b4a] mb-4 mt-10">Leave a Comment</h3>
+                <form>
+                    <div class="mb-4">
+                        <label for="comment-name" class="block text-gray-700 text-sm font-bold mb-2">Your Name:</label>
+                        <input type="text" id="comment-name" name="comment-name" class="form-input-field w-full" placeholder="Full Name">
+                    </div>
+                    <div class="mb-4">
+                        <label for="comment-email" class="block text-gray-700 text-sm font-bold mb-2">Your Email:</label>
+                        <input type="email" id="comment-email" name="comment-email" class="form-input-field w-full" placeholder="email@example.com">
+                    </div>
+                    <div class="mb-6">
+                        <label for="comment-text" class="block text-gray-700 text-sm font-bold mb-2">Comment:</label>
+                        <textarea id="comment-text" name="comment-text" rows="5" class="form-input-field w-full" placeholder="Write your comment here..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-comment-btn">Submit Comment</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#0a3b4a] text-white text-center py-8 px-5 text-sm">
+        <p>&copy; 2025 Haustiery. All rights reserved. | Designed with <i class="fas fa-heart"></i> for pets and pet lovers.</p>
+    </footer>
+
+</body>
+</html>

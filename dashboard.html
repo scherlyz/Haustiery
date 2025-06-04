@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dashboard - Haustiery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Poppins', sans-serif;
+            }
+        }
+        @layer components {
+            .glow-paw {
+                color: #f26a1b;
+                font-size: 22px;
+                animation: glow 2s infinite alternate;
+                text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+            }
+            @keyframes glow {
+                from {
+                    text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+                }
+                to {
+                    text-shadow: 0 0 10px #ff944d, 0 0 20px #ff944d, 0 0 30px #ff944d;
+                }
+            }
+            .dog-image-hover {
+                filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.7));
+                transform: scale(1.03);
+            }
+            .nav-link.active::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                height: 2px;
+                width: 100%;
+                background: orange;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none; /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden bg-gradient-to-r from-[#f8f0db] via-[#e6dcc5] to-[#0a3b4a] flex">
+
+    <aside class="fixed inset-y-0 left-0 flex-wrap items-center justify-between block w-64 p-4 my-4 overflow-y-auto bg-white border-0 shadow-xl rounded-2xl z-50 transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0" id="sidenav-main">
+        <div class="h-19">
+            <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 lg:hidden" onclick="toggleSidenav()"></i>
+            <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" href="index.html">
+                <i class="fas fa-paw glow-paw"></i>
+                <span class="ml-1 font-semibold text-xl">Haustiery</span>
+            </a>
+        </div>
+        <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
+        <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
+            <ul class="flex flex-col pl-0 mb-0">
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 bg-orange-100 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-[#f26a1b] transition-colors" href="dashboard.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-home text-base leading-normal text-[#f26a1b]"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Dashboard</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="transaction-history.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-receipt text-base leading-normal text-orange-500"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Transaction History</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="user-management.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-user text-base leading-normal text-emerald-500"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">User Management</span>
+                    </a>
+                </li>
+                <li class="w-full mt-4">
+                    <h6 class="pl-6 ml-2 text-xs font-bold leading-tight uppercase text-slate-700 opacity-60">Admin Pages</h6>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="manage-products.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-box text-base leading-normal text-purple-500"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Manage Products</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="manage-articles.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-newspaper text-base leading-normal text-pink-500"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Manage Articles</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+    </aside>
+
+    <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out lg:ml-64 rounded-xl flex-1">
+        <nav class="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start" navbar-main navbar-scroll="false">
+            <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
+                <nav>
+                    <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
+                        <li class="text-sm leading-normal">
+                            <a class="text-white opacity-50" href="javascript:;">Pages</a>
+                        </li>
+                        <li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']" aria-current="page">Dashboard</li>
+                    </ol>
+                    <h6 class="mb-0 font-bold text-white capitalize">Dashboard</h6>
+                </nav>
+
+                <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
+                    <div class="flex items-center md:ml-auto md:pr-4">
+                        <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease">
+                            <span class="text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <input type="text" class="pl-9 text-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow" placeholder="Type here..." />
+                        </div>
+                    </div>
+                    <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
+                        <li class="flex items-center">
+                            <a href="admin-profile.html" class="block px-0 py-2 text-sm font-semibold text-white transition-all ease-nav-brand">
+                                <i class="fa fa-user sm:mr-1"></i>
+                                <span class="hidden sm:inline">Sherly</span>
+                            </a>
+                        </li>
+                        <li class="flex items-center pl-4 lg:hidden">
+                            <a href="javascript:;" class="block p-0 text-sm text-white transition-all ease-nav-brand" onclick="toggleSidenav()">
+                                <div class="w-4.5 overflow-hidden">
+                                    <i class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"></i>
+                                    <i class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"></i>
+                                    <i class="ease relative block h-0.5 rounded-sm bg-white transition-all"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="flex items-center px-4">
+                            <a href="javascript:;" class="p-0 text-sm text-white transition-all ease-nav-brand">
+                                <i class="cursor-pointer fa fa-cog"></i>
+                            </a>
+                        </li>
+                        <li class="relative flex items-center pr-2">
+                            <p class="hidden transform-dropdown-show"></p>
+                            <a href="javascript:;" class="block p-0 text-sm text-white transition-all ease-nav-brand" dropdown-trigger aria-expanded="false">
+                                <i class="cursor-pointer fa fa-bell"></i>
+                            </a>
+                            <ul dropdown-menu class="text-sm transform-dropdown before:font-awesome before:leading-default before:duration-350 before:ease lg:shadow-3xl duration-250 min-w-44 before:sm:right-8 before:text-5.5 pointer-events-none absolute right-0 top-0 z-50 origin-top list-none rounded-lg border-0 border-solid border-transparent bg-white bg-clip-padding px-2 py-4 text-left text-slate-500 opacity-0 transition-all before:absolute before:right-2 before:left-auto before:top-0 before:z-50 before:inline-block before:font-normal before:text-white before:antialiased before:transition-all before:content-['\f0d8'] sm:-mr-6 lg:absolute lg:right-0 lg:left-auto lg:mt-2 lg:block lg:cursor-pointer">
+                                <li class="relative mb-2">
+                                    <a class="ease py-1.2 clear-both block w-full whitespace-nowrap rounded-lg bg-transparent px-4 duration-300 hover:bg-gray-200 hover:text-slate-700 lg:transition-colors" href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="my-auto">
+                                                <img src="matthias.png" class="inline-flex items-center justify-center mr-4 text-sm text-white h-9 w-9 max-w-none rounded-xl" />
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mb-1 text-sm font-normal leading-normal"><span class="font-semibold">New Message</span> from Matthias</h6>
+                                                <p class="mb-0 text-xs leading-tight text-slate-400">
+                                                    <i class="mr-1 fa fa-clock"></i>
+                                                    13 minutes ago
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="relative mb-2">
+                                    <a class="ease py-1.2 clear-both block w-full whitespace-nowrap rounded-lg px-4 transition-colors duration-300 hover:bg-gray-200 hover:text-slate-700" href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="my-auto">
+                                                <img src="redvelvet.png" class="inline-flex items-center justify-center mr-4 text-sm text-white bg-gradient-to-tl from-zinc-800 to-zinc-700 h-9 w-9 max-w-none rounded-xl" />
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mb-1 text-sm font-normal leading-normal"><span class="font-semibold">New Album</span> by Red Velvet</h6>
+                                                <p class="mb-0 text-xs leading-tight text-slate-400">
+                                                    <i class="mr-1 fa fa-clock"></i>
+                                                    1 day
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a class="ease py-1.2 clear-both block w-full whitespace-nowrap rounded-lg px-4 transition-colors duration-300 hover:bg-gray-200 hover:text-slate-700" href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="inline-flex items-center justify-center my-auto mr-4 text-sm text-white transition-all duration-200 ease-nav-brand bg-gradient-to-tl from-slate-600 to-slate-300 h-9 w-9 rounded-xl">
+                                                <i class="fas fa-credit-card"></i>
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mb-1 text-sm font-normal leading-normal">Payment Success</h6>
+                                                <p class="mb-0 text-xs leading-tight text-slate-400">
+                                                    <i class="mr-1 fa fa-clock"></i>
+                                                    2 days
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="w-full px-6 py-6 mx-auto">
+            <div class="flex flex-wrap -mx-3">
+                <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
+                        <div class="flex-auto p-4">
+                            <div class="flex flex-row -mx-3">
+                                <div class="flex-none w-2/3 max-w-full px-3">
+                                    <div>
+                                        <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase text-slate-700 opacity-60">Today's Income</p>
+                                        <h5 class="mb-2 font-bold">$53,000</h5>
+                                        <p class="mb-0 text-slate-700 opacity-60">
+                                            <span class="text-sm font-bold leading-normal text-emerald-500">+55%</span>
+                                            since yesterday
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="px-3 text-right basis-1/3">
+                                    <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-blue-500 to-violet-500">
+                                        <i class="fa fa-coins text-lg relative top-3.5 text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
+                        <div class="flex-auto p-4">
+                            <div class="flex flex-row -mx-3">
+                                <div class="flex-none w-2/3 max-w-full px-3">
+                                    <div>
+                                        <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase text-slate-700 opacity-60">Today's User</p>
+                                        <h5 class="mb-2 font-bold">2,300</h5>
+                                        <p class="mb-0 text-slate-700 opacity-60">
+                                            <span class="text-sm font-bold leading-normal text-emerald-500">+3%</span>
+                                            since last week
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="px-3 text-right basis-1/3">
+                                    <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-red-600 to-orange-600">
+                                        <i class="fa fa-globe text-lg relative top-3.5 text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
+                        <div class="flex-auto p-4">
+                            <div class="flex flex-row -mx-3">
+                                <div class="flex-none w-2/3 max-w-full px-3">
+                                    <div>
+                                        <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase text-slate-700 opacity-60">New Clients</p>
+                                        <h5 class="mb-2 font-bold">+3,462</h5>
+                                        <p class="mb-0 text-slate-700 opacity-60">
+                                            <span class="text-sm font-bold leading-normal text-red-600">-2%</span>
+                                            since last quartal
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="px-3 text-right basis-1/3">
+                                    <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-emerald-500 to-teal-400">
+                                        <i class="fa fa-users text-lg relative top-3.5 text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full max-w-full px-3 sm:w-1/2 sm:flex-none xl:w-1/4">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl rounded-2xl bg-clip-border">
+                        <div class="flex-auto p-4">
+                            <div class="flex flex-row -mx-3">
+                                <div class="flex-none w-2/3 max-w-full px-3">
+                                    <div>
+                                        <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase text-slate-700 opacity-60">Sales</p>
+                                        <h5 class="mb-2 font-bold">$103,430</h5>
+                                        <p class="mb-0 text-slate-700 opacity-60">
+                                            <span class="text-sm font-bold leading-normal text-emerald-500">+5%</span>
+                                            since last month
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="px-3 text-right basis-1/3">
+                                    <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-orange-500 to-yellow-500">
+                                        <i class="fa fa-shopping-cart text-lg relative top-3.5 text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap mt-6 -mx-3">
+                <div class="w-full max-w-full px-3 mt-0 lg:w-7/12 lg:flex-none">
+                    <div class="border-black/12.5 shadow-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
+                        <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid p-6 pt-4 pb-0">
+                            <h6 class="capitalize text-slate-700">Sales Overview</h6>
+                            <p class="mb-0 text-sm leading-normal text-slate-700 opacity-60">
+                                <i class="fa fa-arrow-up text-emerald-500"></i>
+                                <span class="font-semibold">4% higher</span> in 2021
+                            </p>
+                        </div>
+                        <div class="flex-auto p-4">
+                            <div>
+                                <canvas id="chart-line" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full max-w-full px-3 lg:w-5/12 lg:flex-none">
+                    <div slider class="relative w-full h-full overflow-hidden rounded-2xl">
+                        <div slide class="absolute w-full h-full transition-all duration-500">
+                            <img class="object-cover h-full" src="carousel2.png" alt="carousel image" />
+                            <div class="block text-start ml-12 left-0 bottom-0 absolute right-[15%] pt-5 pb-5 text-white">
+                                <div class="inline-flex items-center justify-center w-8 h-8 mb-4 bg-white rounded-lg">
+                                    <i class="fas fa-camera text-xxs text-slate-700"></i>
+                                </div>
+                                <h5 class="mb-1 text-white">Get Started with Haustiery</h5>
+                                <p class="opacity-80 font-bold">There's nothing I really want to do in life that I can't master.</p>
+                            </div>
+                        </div>
+
+                        <div slide class="absolute w-full h-full transition-all duration-500">
+                            <img class="object-cover h-full" src="carousel1.png" alt="carousel image" />
+                            <div class="block text-start ml-12 left-0 bottom-0 absolute right-[15%] pt-5 pb-5 text-white">
+                                <div class="inline-flex items-center justify-center w-8 h-8 mb-4 bg-white rounded-lg">
+                                    <i class="fas fa-lightbulb text-xxs text-slate-700"></i>
+                                </div>
+                                <h5 class="mb-1 text-white">Quick way to create a web page</h5>
+                                <p class="opacity-80 font-bold">That's my specialty. I'm not particularly talented at anything except the ability to learn.</p>
+                            </div>
+                        </div>
+
+                        <div slide class="absolute w-full h-full transition-all duration-500">
+                            <img class="object-cover h-full" src="carousel3.png" alt="carousel image" />
+                            <div class="block text-start ml-12 left-0 bottom-0 absolute right-[15%] pt-5 pb-5 text-white">
+                                <div class="inline-flex items-center justify-center w-8 h-8 mb-4 bg-white rounded-lg">
+                                    <i class="fas fa-trophy text-xxs text-slate-700"></i>
+                                </div>
+                                <h5 class="mb-1 text-white">Share your design tips!</h5>
+                                <p class="opacity-80 font-bold">Don't be afraid to make mistakes because you can't learn anything from praise.</p>
+                            </div>
+                        </div>
+
+                        <button btn-next class="absolute z-10 w-10 h-10 p-2 text-lg text-white border-none opacity-50 cursor-pointer hover:opacity-100 active:scale-110 top-6 right-4">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button btn-prev class="absolute z-10 w-10 h-10 p-2 text-lg text-white border-none opacity-50 cursor-pointer hover:opacity-100 active:scale-110 top-6 right-16">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap mt-6 -mx-3">
+                <div class="w-full max-w-full px-3 mt-0 mb-6 lg:mb-0 lg:w-7/12 lg:flex-none">
+                    <div class="relative flex flex-col min-w-0 break-words bg-white border-0 border-solid shadow-xl border-black-125 rounded-2xl bg-clip-border">
+                        <div class="p-4 pb-0 mb-0 rounded-t-4">
+                            <div class="flex justify-between">
+                                <h6 class="mb-2 text-slate-700">Sales by Country</h6>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="items-center w-full mb-4 align-top border-collapse border-gray-200">
+                                <tbody>
+                                    <tr>
+                                        <td class="p-2 align-middle bg-transparent border-b w-3/10 whitespace-nowrap">
+                                            <div class="flex items-center px-2 py-1">
+                                                <div>
+                                                    <img src="usflag.png" alt="Country flag" style="width: 24px; height: 16px; object-fit: contain;" />
+                                                </div>
+                                                <div class="ml-6">
+                                                    <p class="mb-0 text-xs font-semibold leading-tight text-slate-700 opacity-60">Country:</p>
+                                                    <h6 class="mb-0 text-sm leading-normal text-slate-700">United states</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
+                                            <div class="text-center">
+                                                <p class="mb-0 text-xs font-semibold leading-tight text-slate-700 opacity-60">Sales:</p>
+                                                <h6 class="mb-0 text-sm leading-normal text-slate-700">2500</h6>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
+                                            <div class="text-center">
+                                                <p class="mb-0 text-xs font-semibold leading-tight text-slate-700 opacity-60">Total:</p>
+                                                <h6 class="mb-0 text-sm leading-normal text-slate-700">$230,900</h6>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 text-sm leading-normal align-middle bg-transparent border-b whitespace-nowrap">
+                                            <div class="flex-1 text-center">
+                                                <p class="mb-0 text-xs font-semibold leading-tight text-slate-700 opacity-60">Bounce:</p>
+                                                <h6 class="mb-0 text-sm leading-normal text-slate-700">29.9%</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 align-middle bg-transparent border-b w-3/10 whitespace-nowrap">
+                                            <div class="flex items-center px-2 py-1">
+                                                <div>
+                                                    <img src="germanyflag.png" alt="Country flag" style="width: 24px; height: 16px; object-fit: contain;" />
+                                                </div>
+                                                <div class="ml-6">
+                                                    <p class="mb-0 text-xs font-semibold leading-tight text-slate-700 opacity-60">Country:</p>
+                                                    <h6 class="mb-0 text-sm leading-normal text-slate-700">Germany</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
+                                            <div class="text-center">
+                                                <p class="mb-0 text-xs font-semibold leading-tight text-slate-700 opacity-60">Sales:</p>
+                                                <h6 class="mb-0 text-sm leading-normal text-slate-700">3.900</h6>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
+                                            <div class="text-center">
+                                                <p class="mb-0 text-xs font-semibold leading-tight text-slate-700 opacity-60">Total:</p>
+                                                <h6 class="mb-0 text-sm leading-normal text-slate-700">$440,000</h6>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 text-sm leading-normal align-middle bg-transparent border-b whitespace-nowrap">
+                                            <div class="flex-1 text-center">
+                                                <p class="mb-0 text-xs font-semibold leading-tight text-slate-700 opacity-60">Bounce:</p>
+                                                <h6 class="mb-0 text-sm leading-normal text-slate-700">40.22%</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 align-middle bg-transparent border-b w-3/10 whitespace-nowrap">
+                                            <div class="flex items-center px-2 py-1">
+                                                <div>
+                                                    <img src="ukflag.png" alt="Country flag" style="width: 24px; height: 16px; object-fit: contain;" />
+                                                </div>
+                                                <div class="ml-6">
+                                                    <p class="mb-0 text-xs font-semibold leading-tight text-slate-700 opacity-60">Country:</p>
+                                                    <h6 class="mb-0 text-sm leading-normal text-slate-700">United Kingdom</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
+                                            <div class="text-center">
+                                                <p class="mb-0 text-xs font-semibold leading-tight text-slate-700 opacity-60">Sales:</p>
+                                                <h6 class="mb-0 text-sm leading-normal text-slate-700">1.400</h6>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap">
+                                            <div class="text-center">
+                                                <p class="mb-0 text-xs font-semibold leading-tight text-slate-700 opacity-60">Total:</p>
+                                                <h6 class="mb-0 text-sm leading-normal text-slate-700">$190,700</h6>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 text-sm leading-normal align-middle bg-transparent border-b whitespace-nowrap">
+                                            <div class="flex-1 text-center">
+                                                <p class="mb-0 text-xs font-semibold leading-tight text-slate-700 opacity-60">Bounce:</p>
+                                                <h6 class="mb-0 text-sm leading-normal text-slate-700">23.44%</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 align-middle bg-transparent border-0 w-3/10 whitespace-nowrap">
+                                            <div class="flex items-center px-2 py-1">
+                                                <div>
+                                                    <img src="brazilflag.png" alt="Country flag" style="width: 24px; height: 16px; object-fit: contain;" />
+                                                </div>
+                                                <div class="ml-6">
+                                                    <p class="mb-0 text-xs font-semibold leading-tight text-slate-700 opacity-60">Country:</p>
+                                                    <h6 class="mb-0 text-sm leading-normal text-slate-700">Brazil</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 align-middle bg-transparent border-0 whitespace-nowrap">
+                                            <div class="text-center">
+                                                <p class="mb-0 text-xs font-semibold leading-tight text-slate-700 opacity-60">Sales:</p>
+                                                <h6 class="mb-0 text-sm leading-normal text-slate-700">562</h6>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 align-middle bg-transparent border-0 whitespace-nowrap">
+                                            <div class="text-center">
+                                                <p class="mb-0 text-xs font-semibold leading-tight text-slate-700 opacity-60">Total:</p>
+                                                <h6 class="mb-0 text-sm leading-normal text-slate-700">$143,960</h6>
+                                            </div>
+                                        </td>
+                                        <td class="p-2 text-sm leading-normal align-middle bg-transparent border-0 whitespace-nowrap">
+                                            <div class="flex-1 text-center">
+                                                <p class="mb-0 text-xs font-semibold leading-tight text-slate-700 opacity-60">Bounce:</p>
+                                                <h6 class="mb-0 text-sm leading-normal text-slate-700">32.14%</h6>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full max-w-full px-3 mt-0 lg:w-5/12 lg:flex-none">
+                    <div class="border-black/12.5 shadow-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
+                        <div class="p-4 pb-0 rounded-t-4">
+                            <h6 class="mb-0 text-slate-700">Category</h6>
+                        </div>
+                        <div class="flex-auto p-4">
+                            <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+                                <li class="relative flex justify-between py-2 pr-4 mb-2 border-0 rounded-t-lg rounded-xl text-inherit">
+                                    <div class="flex items-center">
+                                        <div class="inline-flex items-center justify-center w-8 h-8 mr-4 shadow-sm bg-gradient-to-tl from-zinc-800 to-zinc-700 rounded-xl">
+                                            <i class="fas fa-mobile-alt text-white text-xxs"></i>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <h6 class="mb-1 text-sm leading-normal text-slate-700">Devices</h6>
+                                            <span class="text-xs leading-tight text-slate-700 opacity-80">250 in stock, <span class="font-semibold">346+ sold out</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex">
+                                        <button class="group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all"><i class="fas fa-chevron-right ease-bounce text-2xs group-hover:translate-x-1.25 transition-all duration-200" aria-hidden="true"></i></button>
+                                    </div>
+                                </li>
+                                <li class="relative flex justify-between py-2 pr-4 mb-2 border-0 rounded-xl text-inherit">
+                                    <div class="flex items-center">
+                                        <div class="inline-flex items-center justify-center w-8 h-8 mr-4 shadow-sm bg-gradient-to-tl from-zinc-800 to-zinc-700 rounded-xl">
+                                            <i class="fas fa-tag text-white text-xxs"></i>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <h6 class="mb-1 text-sm leading-normal text-slate-700">Ticket</h6>
+                                            <span class="text-xs leading-tight text-slate-700 opacity-80">123 closed, <span class="font-semibold">15 opened</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex">
+                                        <button class="group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all"><i class="fas fa-chevron-right ease-bounce text-2xs group-hover:translate-x-1.25 transition-all duration-200" aria-hidden="true"></i></button>
+                                    </div>
+                                </li>
+                                <li class="relative flex justify-between py-2 pr-4 mb-2 border-0 rounded-b-lg rounded-xl text-inherit">
+                                    <div class="flex items-center">
+                                        <div class="inline-flex items-center justify-center w-8 h-8 mr-4 shadow-sm bg-gradient-to-tl from-zinc-800 to-zinc-700 rounded-xl">
+                                            <i class="fas fa-box text-white text-xxs"></i>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <h6 class="mb-1 text-sm leading-normal text-slate-700">Error's Log</h6>
+                                            <span class="text-xs leading-tight text-slate-700 opacity-80">1 active, <span class="font-semibold">40 closed</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex">
+                                        <button class="group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all"><i class="fas fa-chevron-right ease-bounce text-2xs group-hover:translate-x-1.25 transition-all duration-200" aria-hidden="true"></i></button>
+                                    </div>
+                                </li>
+                                <li class="relative flex justify-between py-2 pr-4 border-0 rounded-b-lg rounded-xl text-inherit">
+                                    <div class="flex items-center">
+                                        <div class="inline-flex items-center justify-center w-8 h-8 mr-4 shadow-sm bg-gradient-to-tl from-zinc-800 to-zinc-700 rounded-xl">
+                                            <i class="fas fa-smile-beam text-white text-xxs"></i>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <h6 class="mb-1 text-sm leading-normal text-slate-700">Happy User</h6>
+                                            <span class="text-xs leading-tight text-slate-700 opacity-80"><span class="font-semibold">+ 430 </span></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex">
+                                        <button class="group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all"><i class="fas fa-chevron-right ease-bounce text-2xs group-hover:translate-x-1.25 transition-all duration-200" aria-hidden="true"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="pt-4">
+                <div class="w-full px-6 mx-auto">
+                    <div class="flex flex-wrap items-center -mx-3 lg:justify-between">
+                        <div class="w-full max-w-full px-3 mt-0 mb-6 shrink-0 lg:mb-0 lg:w-1/2 lg:flex-none">
+                            <div class="text-sm leading-normal text-center text-slate-500 lg:text-left">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear() + ",");
+                                </script>
+                                made with <i class="fa fa-heart"></i> by
+                                <a href="https://www.creative-tim.com" class="font-semibold text-slate-700" target="_blank">Haustiery Team</a>
+                                for the better pet shop.
+                            </div>
+                        </div>
+                        <div class="w-full max-w-full px-3 mt-0 shrink-0 lg:w-1/2 lg:flex-none">
+                            <ul class="flex flex-wrap justify-center pl-0 mb-0 list-none lg:justify-end">
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com" class="block px-4 pt-0 pb-1 text-sm font-semibold transition-colors ease-in-out text-slate-500" target="_blank">Haustiery Team</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com/presentation" class="block px-4 pt-0 pb-1 text-sm font-semibold transition-colors ease-in-out text-slate-500" target="_blank">About Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://creative-tim.com/blog" class="block px-4 pt-0 pb-1 text-sm font-semibold transition-colors ease-in-out text-slate-500" target="_blank">Blog</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com/license" class="block px-4 pt-0 pb-1 pr-0 text-sm font-semibold transition-colors ease-in-out text-slate-500" target="_blank">License</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Chart.js for Sales Overview
+        var ctx1 = document.getElementById("chart-line").getContext("2d");
+        var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+        gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
+        gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+        gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
+        new Chart(ctx1, {
+            type: "line",
+            data: {
+                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                datasets: [{
+                    label: "Penjualan",
+                    tension: 0.4,
+                    borderWidth: 0,
+                    pointRadius: 0,
+                    borderColor: "#cb0c9f",
+                    backgroundColor: gradientStroke1,
+                    fill: true,
+                    data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+                    maxBarThickness: 6
+                }],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false,
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index',
+                },
+                scales: {
+                    y: {
+                        grid: {
+                            drawBorder: false,
+                            display: true,
+                            drawOnChartArea: true,
+                            drawTicks: false,
+                            borderDash: [5, 5]
+                        },
+                        ticks: {
+                            display: true,
+                            padding: 10,
+                            color: '#b2b9bf',
+                            font: {
+                                size: 11,
+                                family: "Open Sans",
+                                style: 'normal',
+                                lineHeight: 2
+                            },
+                        }
+                    },
+                    x: {
+                        grid: {
+                            drawBorder: false,
+                            display: false,
+                            drawOnChartArea: false,
+                            drawTicks: false,
+                            borderDash: [5, 5]
+                        },
+                        ticks: {
+                            display: true,
+                            color: '#b2b9bf',
+                            padding: 20,
+                            font: {
+                                size: 11,
+                                family: "Open Sans",
+                                style: 'normal',
+                                lineHeight: 2
+                            },
+                        }
+                    },
+                },
+            },
+        });
+    </script>
+
+    <script>
+        const slides = document.querySelectorAll('[slide]');
+        const btnNext = document.querySelector('[btn-next]');
+        const btnPrev = document.querySelector('[btn-prev]');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.transform = `translateX(${(i - index) * 100}%)`;
+            });
+        }
+
+        btnNext.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        });
+
+        btnPrev.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        });
+
+        showSlide(currentSlide); // Initialize carousel
+    </script>
+
+    <script>
+        function toggleSidenav() {
+            const sidenav = document.getElementById('sidenav-main');
+            sidenav.classList.toggle('-translate-x-full');
+            sidenav.classList.toggle('translate-x-0');
+        }
+
+        // Dropdown functionality for notifications
+        document.querySelectorAll('[dropdown-trigger]').forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const dropdownMenu = this.nextElementSibling;
+                dropdownMenu.classList.toggle('opacity-0');
+                dropdownMenu.classList.toggle('pointer-events-none');
+                dropdownMenu.classList.toggle('transform-dropdown-show');
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('[dropdown-trigger]') && !event.target.closest('[dropdown-menu]')) {
+                document.querySelectorAll('[dropdown-menu]').forEach(menu => {
+                    menu.classList.add('opacity-0');
+                    menu.classList.add('pointer-events-none');
+                    menu.classList.remove('transform-dropdown-show');
+                });
+            }
+        });
+
+        // Sidebar color functionality (from reference)
+        function sidebarColor(element) {
+            const sidebar = document.querySelector('aside');
+            const colors = ['blue', 'gray', 'cyan', 'emerald', 'orange', 'red'];
+            colors.forEach(color => {
+                sidebar.classList.remove(`bg-gradient-to-tl`, `from-${color}-500`, `to-${color}-500`);
+                sidebar.classList.remove(`from-zinc-800`, `to-zinc-700`); // For gray default
+            });
+
+            const dataColor = element.getAttribute('data-color');
+            if (dataColor === 'blue') {
+                sidebar.classList.add('bg-gradient-to-tl', 'from-blue-500', 'to-violet-500');
+            } else if (dataColor === 'gray') {
+                sidebar.classList.add('bg-gradient-to-tl', 'from-zinc-800', 'to-zinc-700');
+            } else if (dataColor === 'cyan') {
+                sidebar.classList.add('bg-gradient-to-tl', 'from-blue-700', 'to-cyan-500');
+            } else if (dataColor === 'emerald') {
+                sidebar.classList.add('bg-gradient-to-tl', 'from-emerald-500', 'to-teal-400');
+            } else if (dataColor === 'orange') {
+                sidebar.classList.add('bg-gradient-to-tl', 'from-orange-500', 'to-yellow-500');
+            } else if (dataColor === 'red') {
+                sidebar.classList.add('bg-gradient-to-tl', 'from-red-600', 'to-orange-600');
+            }
+
+            document.querySelectorAll('[sidenav-colors] span').forEach(span => {
+                span.removeAttribute('active-color');
+                span.classList.remove('border-slate-700');
+                span.classList.add('border-white');
+            });
+            element.setAttribute('active-color', true);
+            element.classList.remove('border-white');
+            element.classList.add('border-slate-700');
+        }
+
+        // Fixed Navbar (from reference)
+        const navbarFixedToggle = document.querySelector('[navbarFixed]');
+        if (navbarFixedToggle) {
+            navbarFixedToggle.addEventListener('change', function() {
+                const navbar = document.querySelector('nav[navbar-main]');
+                if (this.checked) {
+                    navbar.classList.add('sticky', 'top-[1%]', 'backdrop-saturate-200', 'backdrop-blur-2xl', 'bg-white/80', 'shadow-blur', 'z-110');
+                    navbar.classList.remove('shadow-none');
+                } else {
+                    navbar.classList.remove('sticky', 'top-[1%]', 'backdrop-saturate-200', 'backdrop-blur-2xl', 'bg-white/80', 'shadow-blur', 'z-110');
+                    navbar.classList.add('shadow-none');
+                }
+            });
+        }
+
+        // Dark mode toggle (from reference)
+        const darkModeToggle = document.querySelector('[dark-toggle]');
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener('change', function() {
+                document.body.classList.toggle('dark:bg-slate-900');
+                document.querySelectorAll('.dark\\:text-white').forEach(el => el.classList.toggle('text-white'));
+                document.querySelectorAll('.dark\\:opacity-80').forEach(el => el.classList.toggle('opacity-80'));
+                document.querySelectorAll('.dark\\:shadow-dark-xl').forEach(el => el.classList.toggle('shadow-dark-xl'));
+                document.querySelectorAll('.dark\\:bg-slate-850').forEach(el => el.classList.toggle('bg-slate-850'));
+                document.querySelectorAll('.dark\\:from-slate-750').forEach(el => el.classList.toggle('from-slate-750'));
+                document.querySelectorAll('.dark\\:to-gray-850').forEach(el => el.classList.toggle('to-gray-850'));
+                document.querySelectorAll('.dark\\:bg-gradient-to-tl').forEach(el => el.classList.toggle('bg-gradient-to-tl'));
+                document.querySelectorAll('.dark\\:border').forEach(el => el.classList.toggle('border'));
+                document.querySelectorAll('.dark\\:border-solid').forEach(el => el.classList.toggle('border-solid'));
+                document.querySelectorAll('.dark\\:border-white').forEach(el => el.classList.toggle('border-white'));
+                document.querySelectorAll('.dark\\:text-white').forEach(el => el.classList.toggle('text-white'));
+            });
+        }
+
+        // Fixed Plugin toggle
+        const fixedPluginButton = document.querySelector('[fixed-plugin-button]');
+        const fixedPluginCloseButton = document.querySelector('[fixed-plugin-close-button]');
+        const fixedPluginCard = document.querySelector('[fixed-plugin-card]');
+
+        if (fixedPluginButton) {
+            fixedPluginButton.addEventListener('click', () => {
+                fixedPluginCard.classList.toggle('-right-90');
+                fixedPluginCard.classList.toggle('right-0');
+            });
+        }
+
+        if (fixedPluginCloseButton) {
+            fixedPluginCloseButton.addEventListener('click', () => {
+                fixedPluginCard.classList.add('-right-90');
+                fixedPluginCard.classList.remove('right-0');
+            });
+        }
+
+        // Close fixed plugin when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('[fixed-plugin-button]') && !event.target.closest('[fixed-plugin-card]')) {
+                if (fixedPluginCard && !fixedPluginCard.classList.contains('-right-90')) {
+                    fixedPluginCard.classList.add('-right-90');
+                    fixedPluginCard.classList.remove('right-0');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

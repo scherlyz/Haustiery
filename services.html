@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Haustiery - Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style type="text/tailwindcss">
+      @layer base {
+        body {
+          font-family: "Poppins", sans-serif;
+        }
+      }
+      @layer components {
+        .glow-paw {
+          color: #f26a1b;
+          font-size: 22px;
+          animation: glow 2s infinite alternate;
+          text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+        }
+        @keyframes glow {
+          from {
+            text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+          }
+          to {
+            text-shadow: 0 0 10px #ff944d, 0 0 20px #ff944d, 0 0 30px #ff944d;
+          }
+        }
+        /* Specific active link styling for the Services page */
+        .nav-link.active-services::after {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          height: 2px;
+          width: 100%;
+          background: orange;
+        }
+      }
+    </style>
+  </head>
+
+  <body
+    class="min-h-screen overflow-x-hidden bg-gradient-to-r from-[#f8f0db] via-[#e6dcc5] to-[#0a3b4a]"
+  >
+    <header>
+      <div class="nav flex justify-between items-center py-5 px-10">
+        <div class="logo font-bold text-xl flex items-center gap-2">
+          <a href="index.html" class="flex items-center gap-2 text-inherit no-underline">
+            <i class="fas fa-paw glow-paw"></i> Haustiery
+          </a>
+        </div>
+        <nav class="flex">
+          <a
+            href="index.html"
+            class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200"
+            >Home</a
+          >
+          <a
+            href="archive-article.html"
+            class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200"
+            >Articles</a
+          >
+          <a
+            href="product-catalog.html"
+            class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200"
+            >Shop</a
+          >
+          <a
+            href="services.html"
+            class="nav-link active-services relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200"
+            >Services</a
+          >
+          <a
+            href="contact.html"
+            class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200"
+            >Contact</a
+          >
+        </nav>
+        <div class="flex items-center gap-4">
+          <a href="cart.html" class="text-gray-800 hover:text-[#f26a1b] transition-colors duration-200" aria-label="Shopping Cart">
+            <i class="fas fa-shopping-cart text-xl"></i>
+          </a>
+          <a href="user-profile.html" class="flex items-center text-gray-800 hover:text-[#f26a1b] transition-colors duration-200">
+            <i class="fa fa-user text-xl sm:mr-1"></i>
+            <span class="hidden sm:inline font-medium">Sherly</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="py-16 px-10 bg-white">
+      <div class="max-w-7xl mx-auto text-center">
+        <h1 class="text-4xl font-bold text-[#0a3b4a] mb-8">Our Comprehensive Pet Services</h1>
+        <p class="text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
+          At Haustiery, we're dedicated to providing exceptional care for your beloved pets. Our range of services is designed to keep your companions healthy, happy, and well-cared for, even when you're away.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-[#fdf5e7] p-8 rounded-2xl shadow-lg flex flex-col items-center text-center">
+            <i class="fas fa-dog text-6xl text-[#f26a1b] mb-4"></i>
+            <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-3">Professional Dog Walking</h2>
+            <p class="text-gray-600 mb-4">
+              Our experienced walkers provide engaging walks tailored to your dog's energy level, ensuring they get the exercise and mental stimulation they need.
+            </p>
+            <ul class="list-none p-0 mb-6 text-gray-700 text-sm">
+              <li class="flex items-center justify-center mb-2"><span class="check-icon text-green-500 mr-2">✔</span> 30, 45, and 60-minute walks</li>
+              <li class="flex items-center justify-center mb-2"><span class="check-icon text-green-500 mr-2">✔</span> GPS tracking for safety</li>
+              <li class="flex items-center justify-center"><span class="check-icon text-green-500 mr-2">✔</span> Fresh water and treat upon return</li>
+            </ul>
+            <button class="bg-[#f26a1b] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-[#ff7a3d] transition-colors duration-300">
+              Book a Walk
+            </button>
+          </div>
+
+          <div class="bg-[#fdf5e7] p-8 rounded-2xl shadow-lg flex flex-col items-center text-center">
+            <i class="fas fa-home text-6xl text-[#f26a1b] mb-4"></i>
+            <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-3">Reliable Pet Sitting</h2>
+            <p class="text-gray-600 mb-4">
+              Your pets stay in the comfort of their own home while you're away, receiving personalized attention, feeding, and playtime from our trusted sitters.
+            </p>
+            <ul class="list-none p-0 mb-6 text-gray-700 text-sm">
+              <li class="flex items-center justify-center mb-2"><span class="check-icon text-green-500 mr-2">✔</span> In-home care for all pets</li>
+              <li class="flex items-center justify-center mb-2"><span class="check-icon text-green-500 mr-2">✔</span> Administer medication if needed</li>
+              <li class="flex items-center justify-center"><span class="check-icon text-green-500 mr-2">✔</span> Mail collection & plant watering</li>
+            </ul>
+            <button class="bg-[#f26a1b] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-[#ff7a3d] transition-colors duration-300">
+              Arrange Pet Sitting
+            </button>
+          </div>
+
+          <div class="bg-[#fdf5e7] p-8 rounded-2xl shadow-lg flex flex-col items-center text-center">
+            <i class="fas fa-bath text-6xl text-[#f26a1b] mb-4"></i>
+            <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-3">Full-Service Grooming</h2>
+            <p class="text-gray-600 mb-4">
+              Keep your pet looking and feeling their best with our professional grooming services, from baths and haircuts to nail trims and ear cleaning.
+            </p>
+            <ul class="list-none p-0 mb-6 text-gray-700 text-sm">
+              <li class="flex items-center justify-center mb-2"><span class="check-icon text-green-500 mr-2">✔</span> Bath & brush out</li>
+              <li class="flex items-center justify-center mb-2"><span class="check-icon text-green-500 mr-2">✔</span> Haircut & styling</li>
+              <li class="flex items-center justify-center"><span class="check-icon text-green-500 mr-2">✔</span> De-shedding treatments</li>
+            </ul>
+            <button class="bg-[#f26a1b] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-[#ff7a3d] transition-colors duration-300">
+              Schedule Grooming
+            </button>
+          </div>
+
+          <div class="bg-[#fdf5e7] p-8 rounded-2xl shadow-lg flex flex-col items-center text-center">
+            <i class="fas fa-graduation-cap text-6xl text-[#f26a1b] mb-4"></i>
+            <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-3">Positive Reinforcement Training</h2>
+            <p class="text-gray-600 mb-4">
+              Our certified trainers use positive reinforcement techniques to help your pet learn good manners, basic obedience, and overcome behavioral challenges.
+            </p>
+            <ul class="list-none p-0 mb-6 text-gray-700 text-sm">
+              <li class="flex items-center justify-center mb-2"><span class="check-icon text-green-500 mr-2">✔</span> Puppy training</li>
+              <li class="flex items-center justify-center mb-2"><span class="check-icon text-green-500 mr-2">✔</span> Basic & advanced obedience</li>
+              <li class="flex items-center justify-center"><span class="check-icon text-green-500 mr-2">✔</span> Behavior modification</li>
+            </ul>
+            <button class="bg-[#f26a1b] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-[#ff7a3d] transition-colors duration-300">
+              Explore Training
+            </button>
+          </div>
+
+          <div class="bg-[#fdf5e7] p-8 rounded-2xl shadow-lg flex flex-col items-center text-center">
+            <i class="fas fa-stethoscope text-6xl text-[#f26a1b] mb-4"></i>
+            <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-3">Virtual Vet Consultations</h2>
+            <p class="text-gray-600 mb-4">
+              Connect with our licensed veterinarians from the comfort of your home for advice on health, nutrition, and minor concerns.
+            </p>
+            <ul class="list-none p-0 mb-6 text-gray-700 text-sm">
+              <li class="flex items-center justify-center mb-2"><span class="check-icon text-green-500 mr-2">✔</span> General health questions</li>
+              <li class="flex items-center justify-center mb-2"><span class="check-icon text-green-500 mr-2">✔</span> Nutritional guidance</li>
+              <li class="flex items-center justify-center"><span class="check-icon text-green-500 mr-2">✔</span> Minor illness advice</li>
+            </ul>
+            <button class="bg-[#f26a1b] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-[#ff7a3d] transition-colors duration-300">
+              Get Consulted
+            </button>
+          </div>
+
+          <div class="bg-[#fdf5e7] p-8 rounded-2xl shadow-lg flex flex-col items-center text-center">
+            <i class="fas fa-car text-6xl text-[#f26a1b] mb-4"></i>
+            <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-3">Convenient Pet Taxi</h2>
+            <p class="text-gray-600 mb-4">
+              Safe and comfortable transport for your pet to vet appointments, grooming sessions, or any other destination they need to reach.
+            </p>
+            <ul class="list-none p-0 mb-6 text-gray-700 text-sm">
+              <li class="flex items-center justify-center mb-2"><span class="check-icon text-green-500 mr-2">✔</span> Vet appointments</li>
+              <li class="flex items-center justify-center mb-2"><span class="check-icon text-green-500 mr-2">✔</span> Grooming appointments</li>
+              <li class="flex items-center justify-center"><span class="check-icon text-green-500 mr-2">✔</span> Pet-friendly locations</li>
+            </ul>
+            <button class="bg-[#f26a1b] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-[#ff7a3d] transition-colors duration-300">
+              Book a Ride
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#0a3b4a] text-white text-center py-8 px-5 text-sm">
+      <p>
+        &copy; 2025 Haustiery. All rights reserved. | Designed with
+        <i class="fas fa-heart"></i> for pets and pet lovers.
+      </p>
+    </footer>
+  </body>
+</html>

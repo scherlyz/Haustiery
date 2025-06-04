@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Product Detail - Haustiery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Poppins', sans-serif;
+            }
+        }
+        @layer components {
+            .glow-paw {
+                color: #f26a1b;
+                font-size: 22px;
+                animation: glow 2s infinite alternate;
+                text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+            }
+            @keyframes glow {
+                from {
+                    text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+                }
+                to {
+                    text-shadow: 0 0 10px #ff944d, 0 0 20px #ff944d, 0 0 30px #ff944d;
+                }
+            }
+            .dog-image-hover {
+                filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.7));
+                transform: scale(1.03);
+            }
+            .nav-link.active::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                height: 2px;
+                width: 100%;
+                background: orange;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none; /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden bg-gradient-to-r from-[#f8f0db] via-[#e6dcc5] to-[#0a3b4a]">
+
+    <header class="py-5">
+        <div class="nav flex justify-between items-center px-4 md:px-10 max-w-7xl mx-auto">
+            <div class="logo font-bold text-xl flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-2 text-inherit no-underline">
+                    <i class="fas fa-paw glow-paw"></i> Haustiery
+                </a>
+            </div>
+            <nav class="hidden md:flex">
+                <a href="index.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Home</a>
+                <a href="about.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">About</a>
+                <a href="product-catalog.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Shop</a>
+                <a href="services.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Services</a>
+                <a href="contact.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Contact</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="cart.html" class="text-gray-800 hover:text-[#f26a1b] transition-colors duration-200" aria-label="Shopping Cart">
+                  <i class="fas fa-shopping-cart text-xl"></i>
+                </a>
+                <a href="user-profile.html" class="flex items-center text-gray-800 hover:text-[#f26a1b] transition-colors duration-200">
+                  <i class="fa fa-user text-xl sm:mr-1"></i>
+                  <span class="hidden sm:inline font-medium">Sherly</span>
+                </a>
+              </div>
+        </div>
+    </header>
+
+    <main class="min-h-[60vh] py-8 px-4 md:px-8">
+        <section class="max-w-6xl mx-auto bg-white p-6 md:p-10 rounded-2xl shadow-lg">
+            <a href="product-catalog.html" class="text-gray-600 hover:text-[#f26a1b] text-sm mb-4 block"><i class="fas fa-arrow-left mr-2"></i> Back to Product Catalog</a>
+
+            <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <img src="premiumdogfood.jpg" alt="Dog Food Premium Chicken" class="w-full max-w-md h-auto rounded-lg shadow-md object-contain">
+                </div>
+
+                <div class="w-full md:w-1/2">
+                    <h1 class="text-3xl md:text-4xl font-bold text-[#0a3b4a] mb-2">Dog Food Premium Chicken</h1>
+                    <p class="text-lg text-gray-600 mb-4">Category: Dog Food</p>
+                    
+                    <div class="flex items-center mb-4">
+                        <span class="text-3xl font-bold text-[#f26a1b] mr-4">$50.00</span>
+                        <span class="text-lg text-gray-500">⭐ 4.8 (120 reviews)</span>
+                    </div>
+
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        Premium Chicken Dog Food is a high-quality dog food specially formulated to meet the complete nutritional needs of adult dogs. It contains real chicken protein as the main ingredient, enriched with vitamins, minerals, and antioxidants to support optimal health, energy, and a shiny coat. Ideal for all dog breeds.
+                    </p>
+
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold text-[#0a3b4a] mb-2">Specifications:</h3>
+                        <ul class="list-disc list-inside text-gray-700 text-sm">
+                            <li>Net Weight: 10 Kg</li>
+                            <li>Main Ingredient: Real Chicken</li>
+                            <li>Nutritional Content: Protein 25%, Fat 15%, Fiber 3%, Moisture 10%</li>
+                            <li>Suitable For: Adult Dogs of All Breeds</li>
+                            <li>Certifications: Halal & GMO-Free</li>
+                        </ul>
+                    </div>
+
+                    <div class="flex items-center mb-6">
+                        <label for="quantity" class="mr-3 text-gray-700 font-semibold">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1" class="w-20 p-2 border border-gray-300 rounded-md text-center focus:outline-none focus:ring-2 focus:ring-[#f26a1b]">
+                    </div>
+
+                    <button class="w-full bg-[#f26a1b] text-white py-3 rounded-full text-lg font-bold hover:bg-[#ff7a3d] transition-colors duration-300">
+                        <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-10 pt-8 border-t border-gray-200">
+                <h2 class="text-2xl font-bold text-[#0a3b4a] mb-4">Product Reviews</h2>
+                
+                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <p class="font-semibold text-[#0a3b4a]">Sarah J.</p>
+                        <p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+                    </div>
+                    <p class="text-gray-600 text-xs mb-2">May 25, 2025</p>
+                    <p class="text-gray-700 text-sm">My dog absolutely loves this food! His coat is shinier and he has more energy.</p>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <p class="font-semibold text-[#0a3b4a]">Budi S.</p>
+                        <p class="text-yellow-500">⭐⭐⭐⭐</p>
+                    </div>
+                    <p class="text-gray-600 text-xs mb-2">May 20, 2025</p>
+                    <p class="text-gray-700 text-sm">Great product, fast shipping. The price is a bit high but the quality is worth it.</p>
+                </div>
+
+                <h3 class="text-xl font-semibold text-[#0a3b4a] mb-3 mt-8">Leave Your Review</h3>
+                <form>
+                    <div class="mb-4">
+                        <label for="review-name" class="block text-gray-700 text-sm font-bold mb-2">Your Name:</label>
+                        <input type="text" id="review-name" name="review-name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Full Name">
+                    </div>
+                    <div class="mb-4">
+                        <label for="review-rating" class="block text-gray-700 text-sm font-bold mb-2">Rating:</label>
+                        <select id="review-rating" name="review-rating" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                            <option value="4">⭐⭐⭐⭐ Very Good</option>
+                            <option value="3">⭐⭐⭐ Good Enough</option>
+                            <option value="2">⭐⭐ Not So Good</option>
+                            <option value="1">⭐ Bad</option>
+                        </select>
+                    </div>
+                    <div class="mb-6">
+                        <label for="review-text" class="block text-gray-700 text-sm font-bold mb-2">Comment:</label>
+                        <textarea id="review-text" name="review-text" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Write your review here..."></textarea>
+                    </div>
+                    <button type="submit" class="bg-[#f26a1b] text-white font-bold py-2 px-4 rounded-full hover:bg-[#ff7a3d] transition-colors duration-300">Submit Review</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#0a3b4a] text-white text-center py-8 px-5 text-sm">
+        <p>&copy; 2025 Haustiery. All rights reserved. | Designed with <i class="fas fa-heart"></i> for pets and pet lovers.</p>
+    </footer>
+
+</body>
+</html>

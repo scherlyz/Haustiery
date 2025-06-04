@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Your Cart - Haustiery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Poppins', sans-serif;
+            }
+        }
+        @layer components {
+            .glow-paw {
+                color: #f26a1b;
+                font-size: 22px;
+                animation: glow 2s infinite alternate;
+                text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+            }
+            @keyframes glow {
+                from {
+                    text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+                }
+                to {
+                    text-shadow: 0 0 10px #ff944d, 0 0 20px #ff944d, 0 0 30px #ff944d;
+                }
+            }
+            /* Specific active link styling for the Cart page (assuming a cart link in the future) */
+            .nav-link.active-cart::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                height: 2px;
+                width: 100%;
+                background: orange;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden bg-gradient-to-r from-[#f8f0db] via-[#e6dcc5] to-[#0a3b4a]">
+
+    <header class="py-5">
+        <div class="nav flex justify-between items-center px-4 md:px-10 max-w-7xl mx-auto">
+            <div class="logo font-bold text-xl flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-2 text-inherit no-underline">
+                    <i class="fas fa-paw glow-paw"></i> Haustiery
+                </a>
+            </div>
+            <nav class="hidden md:flex">
+                <a href="index.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Home</a>
+                <a href="archive-article.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Articles</a>
+                <a href="product-catalog.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Shop</a>
+                <a href="services.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Services</a>
+                <a href="contact.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Contact</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="cart.html" class="text-gray-800 hover:text-[#f26a1b] transition-colors duration-200 nav-link active-cart" aria-label="Shopping Cart">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                </a>
+                <a href="user-profile.html" class="flex items-center text-gray-800 hover:text-[#f26a1b] transition-colors duration-200">
+                    <i class="fa fa-user text-xl sm:mr-1"></i>
+                    <span class="hidden sm:inline font-medium">Sherly</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="min-h-[60vh] py-8 px-4 md:px-8">
+        <section class="max-w-6xl mx-auto bg-white p-6 md:p-10 rounded-2xl shadow-lg">
+            <h1 class="text-3xl md:text-4xl font-bold text-[#0a3b4a] mb-8 text-center">Your Shopping Cart</h1>
+
+            <div id="cart-items-container">
+                <div class="flex flex-col md:flex-row items-center justify-between border-b border-gray-200 py-4 mb-4 last:mb-0">
+                    <div class="flex items-center gap-4 mb-4 md:mb-0 w-full md:w-auto">
+                        <img src="premiumdogfood.jpg" alt="Premium Dog Food" class="w-20 h-20 object-cover rounded-md shadow-sm">
+                        <div>
+                            <h2 class="text-lg font-semibold text-[#0a3b4a]">Premium Chicken Dog Food</h2>
+                            <p class="text-gray-600 text-sm">Dog Food - 10 Kg</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 w-full justify-between md:justify-end md:w-auto">
+                        <div class="flex items-center border border-gray-300 rounded-md">
+                            <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded-l-md" onclick="updateQuantity(this, -1)">-</button>
+                            <input type="number" value="1" min="1" class="w-12 text-center border-x border-gray-300 py-1 focus:outline-none" onchange="updateQuantity(this, 0)">
+                            <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded-r-md" onclick="updateQuantity(this, 1)">+</button>
+                        </div>
+                        <span class="text-lg font-bold text-[#f26a1b] price">$50.00</span>
+                        <button class="text-red-500 hover:text-red-700 transition-colors duration-200" aria-label="Remove item" onclick="removeItem(this)">
+                            <i class="fas fa-trash-alt text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-between border-b border-gray-200 py-4 mb-4 last:mb-0">
+                    <div class="flex items-center gap-4 mb-4 md:mb-0 w-full md:w-auto">
+                        <img src="catlaser.jpg" alt="Interactive Cat Laser Pointer" class="w-20 h-20 object-cover rounded-md shadow-sm">
+                        <div>
+                            <h2 class="text-lg font-semibold text-[#0a3b4a]">Interactive Cat Laser Pointer</h2>
+                            <p class="text-gray-600 text-sm">Cat Toy</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 w-full justify-between md:justify-end md:w-auto">
+                        <div class="flex items-center border border-gray-300 rounded-md">
+                            <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded-l-md" onclick="updateQuantity(this, -1)">-</button>
+                            <input type="number" value="2" min="1" class="w-12 text-center border-x border-gray-300 py-1 focus:outline-none" onchange="updateQuantity(this, 0)">
+                            <button class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded-r-md" onclick="updateQuantity(this, 1)">+</button>
+                        </div>
+                        <span class="text-lg font-bold text-[#f26a1b] price">$30.00</span> <button class="text-red-500 hover:text-red-700 transition-colors duration-200" aria-label="Remove item" onclick="removeItem(this)">
+                            <i class="fas fa-trash-alt text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="empty-cart-message" class="text-center text-gray-500 py-8 hidden">
+                    <i class="fas fa-shopping-basket text-6xl mb-4 text-gray-300"></i>
+                    <p class="text-xl font-semibold">Your cart is empty!</p>
+                    <p class="mt-2">Looks like you haven't added anything to your cart yet. <br>Start shopping now!</p>
+                    <a href="product-catalog.html" class="inline-block mt-6 bg-[#f26a1b] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-[#ff7a3d] transition-colors duration-300">
+                        Continue Shopping
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-gray-200 flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-xl font-bold text-[#0a3b4a]">Subtotal: <span id="cart-subtotal" class="text-[#f26a1b]">$80.00</span></p>
+                    <p class="text-sm text-gray-500 mt-1">(Shipping and taxes calculated at checkout)</p>
+                </div>
+                <button class="w-full md:w-auto bg-[#0a3b4a] text-white px-8 py-3 rounded-full text-lg font-bold hover:bg-[#ff7a3d] transition-colors duration-300" onclick="location.href='checkout.html'">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#0a3b4a] text-white text-center py-8 px-5 text-sm">
+        <p>&copy; 2025 Haustiery. All rights reserved. | Designed with <i class="fas fa-heart"></i> for pets and pet lovers.</p>
+    </footer>
+
+    <script>
+        // Simple JavaScript for demonstration purposes
+        function updateQuantity(button, change) {
+            const input = button.parentNode.querySelector('input[type="number"]');
+            let quantity = parseInt(input.value);
+            const itemPriceText = button.closest('.flex-col').querySelector('.price').textContent;
+            const itemBasePrice = parseFloat(itemPriceText.replace('$', '')) / quantity;
+
+            if (change === 1) {
+                quantity++;
+            } else if (change === -1 && quantity > 1) {
+                quantity--;
+            } else if (change === 0) { // If value changed directly in input
+                if (isNaN(quantity) || quantity < 1) {
+                    quantity = 1;
+                }
+            }
+            input.value = quantity;
+            button.closest('.flex-col').querySelector('.price').textContent = `$${(itemBasePrice * quantity).toFixed(2)}`;
+            updateCartTotal();
+        }
+
+        function removeItem(button) {
+            button.closest('.flex-col').remove();
+            updateCartTotal();
+            checkEmptyCart();
+        }
+
+        function updateCartTotal() {
+            let subtotal = 0;
+            document.querySelectorAll('#cart-items-container .price').forEach(priceElement => {
+                subtotal += parseFloat(priceElement.textContent.replace('$', ''));
+            });
+            document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+        }
+
+        function checkEmptyCart() {
+            const cartItems = document.querySelectorAll('#cart-items-container > div:not(#empty-cart-message)');
+            const emptyMessage = document.getElementById('empty-cart-message');
+            if (cartItems.length === 0) {
+                emptyMessage.classList.remove('hidden');
+                document.querySelector('button[onclick="alert(\'Proceeding to checkout!\')"]').disabled = true; // Disable checkout button
+                document.querySelector('button[onclick="alert(\'Proceeding to checkout!\')"]').classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                emptyMessage.classList.add('hidden');
+                document.querySelector('button[onclick="alert(\'Proceeding to checkout!\')"]').disabled = false; // Enable checkout button
+                document.querySelector('button[onclick="alert(\'Proceeding to checkout!\')"]').classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        // Initialize cart on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartTotal();
+            checkEmptyCart();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Checkout - Haustiery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Poppins', sans-serif;
+            }
+        }
+        @layer components {
+            .glow-paw {
+                color: #f26a1b;
+                font-size: 22px;
+                animation: glow 2s infinite alternate;
+                text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+            }
+            @keyframes glow {
+                from {
+                    text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+                }
+                to {
+                    text-shadow: 0 0 10px #ff944d, 0 0 20px #ff944d, 0 0 30px #ff944d;
+                }
+            }
+            /* Specific active link styling for the Shop link in the header */
+            .nav-link.active-shop::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                height: 2px;
+                width: 100%;
+                background: orange;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden bg-gradient-to-r from-[#f8f0db] via-[#e6dcc5] to-[#0a3b4a]">
+
+    <header class="py-5">
+        <div class="nav flex justify-between items-center px-4 md:px-10 max-w-7xl mx-auto">
+            <div class="logo font-bold text-xl flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-2 text-inherit no-underline">
+                    <i class="fas fa-paw glow-paw"></i> Haustiery
+                </a>
+            </div>
+            <nav class="hidden md:flex">
+                <a href="index.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Home</a>
+                <a href="archive-article.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Articles</a>
+                <a href="product-catalog.html" class="nav-link active-shop relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Shop</a>
+                <a href="services.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Services</a>
+                <a href="contact.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Contact</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="cart.html" class="text-gray-800 hover:text-[#f26a1b] transition-colors duration-200" aria-label="Shopping Cart">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                </a>
+                <a href="user-profile.html" class="flex items-center text-gray-800 hover:text-[#f26a1b] transition-colors duration-200">
+                    <i class="fa fa-user text-xl sm:mr-1"></i>
+                    <span class="hidden sm:inline font-medium">Sherly</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="min-h-[60vh] py-8 px-4 md:px-8">
+        <section class="max-w-3xl mx-auto bg-white p-6 md:p-8 rounded-2xl shadow-lg">
+            <h1 class="text-3xl md:text-4xl font-bold text-[#0a3b4a] mb-8 text-center">Payment Details</h1>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-4">Shipping Address</h2>
+                    <form>
+                        <div class="mb-4">
+                            <label for="full-name" class="block text-gray-700 text-sm font-bold mb-2">Full Name:</label>
+                            <input type="text" id="full-name" name="full-name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Your Full Name">
+                        </div>
+                        <div class="mb-4">
+                            <label for="address" class="block text-gray-700 text-sm font-bold mb-2">Address:</label>
+                            <textarea id="address" name="address" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Street, House Number, RT/RW"></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label for="city" class="block text-gray-700 text-sm font-bold mb-2">City:</label>
+                            <input type="text" id="city" name="city" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Your City">
+                        </div>
+                        <div class="mb-4">
+                            <label for="postal-code" class="block text-gray-700 text-sm font-bold mb-2">Postal Code:</label>
+                            <input type="text" id="postal-code" name="postal-code" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Postal Code">
+                        </div>
+                        <div class="mb-4">
+                            <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Phone Number:</label>
+                            <input type="tel" id="phone" name="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="+62 812 3456 7890">
+                        </div>
+                    </form>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-4">Order Summary</h2>
+                    <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-700">Products (2 items):</span>
+                            <span class="font-semibold text-gray-800">$65.00</span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-700">Shipping Cost:</span>
+                            <span class="font-semibold text-gray-800">$10.00</span>
+                        </div>
+                        <div class="flex justify-between pt-4 border-t border-gray-200">
+                            <span class="text-xl font-bold text-[#0a3b4a]">Total Payment:</span>
+                            <span class="text-2xl font-bold text-[#f26a1b]">$75.00</span>
+                        </div>
+                    </div>
+
+                    <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-4">Payment Method</h2>
+                    <div class="flex flex-col gap-3">
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio text-[#f26a1b]" name="payment-method" value="bank-transfer" checked>
+                            <span class="ml-2 text-gray-700">Bank Transfer</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio text-[#f26a1b]" name="payment-method" value="e-wallet">
+                            <span class="ml-2 text-gray-700">E-Wallet (OVO, GoPay, Dana)</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio text-[#f26a1b]" name="payment-method" value="credit-card">
+                            <span class="ml-2 text-gray-700">Credit/Debit Card</span>
+                        </label>
+                    </div>
+
+                    <button class="w-full bg-[#f26a1b] text-white py-3 rounded-full text-lg font-bold hover:bg-[#ff7a3d] transition-colors duration-300 mt-8" onclick="location.href='order-confirmation.html'">
+                        Pay Now
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#0a3b4a] text-white text-center py-8 px-5 text-sm">
+        <p>&copy; 2025 Haustiery. All rights reserved. | Designed with <i class="fas fa-heart"></i> for pets and pet lovers.</p>
+    </footer>
+
+</body>
+</html>

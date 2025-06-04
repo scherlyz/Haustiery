@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Manage Articles - Haustiery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Poppins', sans-serif;
+            }
+        }
+        @layer components {
+            .glow-paw {
+                color: #f26a1b;
+                font-size: 22px;
+                animation: glow 2s infinite alternate;
+                text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+            }
+            @keyframes glow {
+                from {
+                    text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+                }
+                to {
+                    text-shadow: 0 0 10px #ff944d, 0 0 20px #ff944d, 0 0 30px #ff944d;
+                }
+            }
+            .nav-link.active::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                height: 2px;
+                width: 100%;
+                background: orange;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none; /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden bg-gradient-to-r from-[#f8f0db] via-[#e6dcc5] to-[#0a3b4a] flex">
+
+    <aside class="fixed inset-y-0 left-0 flex-wrap items-center justify-between block w-64 p-4 my-4 overflow-y-auto bg-white border-0 shadow-xl rounded-2xl z-50 transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0" id="sidenav-main">
+        <div class="h-19">
+            <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 lg:hidden" onclick="toggleSidenav()"></i>
+            <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" href="index.html">
+                <i class="fas fa-paw glow-paw"></i>
+                <span class="ml-1 font-semibold text-xl">Haustiery</span>
+            </a>
+        </div>
+        <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
+        <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
+            <ul class="flex flex-col pl-0 mb-0">
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="dashboard.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-home text-base leading-normal text-[#f26a1b]"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Dashboard</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="transaction-history.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-receipt text-base leading-normal text-orange-500"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Transaction History</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="user-management.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-user text-base leading-normal text-[#f26a1b]"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">User Management</span>
+                    </a>
+                </li>
+                <li class="w-full mt-4">
+                    <h6 class="pl-6 ml-2 text-xs font-bold leading-tight uppercase text-slate-700 opacity-60">Admin Pages</h6>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="manage-products.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-box text-base leading-normal text-purple-500"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Manage Products</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 bg-orange-100 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-[#f26a1b] transition-colors" href="manage-articles.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-newspaper text-base leading-normal text-pink-500"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Manage Articles</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out lg:ml-64 rounded-xl flex-1">
+        <nav class="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start" navbar-main navbar-scroll="false">
+            <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
+                <nav>
+                    <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
+                        <li class="text-sm leading-normal">
+                            <a class="text-white opacity-50" href="javascript:;">Pages</a>
+                        </li>
+                        <li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']" aria-current="page">Manage Articles</li>
+                    </ol>
+                    <h6 class="mb-0 font-bold text-white capitalize">Manage Articles</h6>
+                </nav>
+
+                <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
+                    <div class="flex items-center md:ml-auto md:pr-4">
+                        <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease">
+                            <span class="text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <input type="text" class="pl-9 text-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow" placeholder="Type here..." />
+                        </div>
+                    </div>
+                    <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
+                        <li class="flex items-center">
+                            <a href="admin-profile.html" class="block px-0 py-2 text-sm font-semibold text-white transition-all ease-nav-brand">
+                                <i class="fa fa-user sm:mr-1"></i>
+                                <span class="hidden sm:inline">Sherly</span>
+                            </a>
+                        </li>
+                        <li class="flex items-center pl-4 lg:hidden">
+                            <a href="javascript:;" class="block p-0 text-sm text-white transition-all ease-nav-brand" onclick="toggleSidenav()">
+                                <div class="w-4.5 overflow-hidden">
+                                    <i class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"></i>
+                                    <i class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"></i>
+                                    <i class="ease relative block h-0.5 rounded-sm bg-white transition-all"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="flex items-center px-4">
+                            <a href="javascript:;" class="p-0 text-sm text-white transition-all ease-nav-brand">
+                                <i class="cursor-pointer fa fa-cog"></i>
+                            </a>
+                        </li>
+                        <li class="relative flex items-center pr-2">
+                            <p class="hidden transform-dropdown-show"></p>
+                            <a href="javascript:;" class="block p-0 text-sm text-white transition-all ease-nav-brand" dropdown-trigger aria-expanded="false">
+                                <i class="cursor-pointer fa fa-bell"></i>
+                            </a>
+                            <ul dropdown-menu class="text-sm transform-dropdown before:font-awesome before:leading-default before:duration-350 before:ease lg:shadow-3xl duration-250 min-w-44 before:sm:right-8 before:text-5.5 pointer-events-none absolute right-0 top-0 z-50 origin-top list-none rounded-lg border-0 border-solid border-transparent bg-white bg-clip-padding px-2 py-4 text-left text-slate-500 opacity-0 transition-all before:absolute before:right-2 before:left-auto before:top-0 before:z-50 before:inline-block before:font-normal before:text-white before:antialiased before:transition-all before:content-['\f0d8'] sm:-mr-6 lg:absolute lg:right-0 lg:left-auto lg:mt-2 lg:block lg:cursor-pointer">
+                                <li class="relative mb-2">
+                                    <a class="ease py-1.2 clear-both block w-full whitespace-nowrap rounded-lg bg-transparent px-4 duration-300 hover:bg-gray-200 hover:text-slate-700 lg:transition-colors" href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="my-auto">
+                                                <img src="matthias.png" class="inline-flex items-center justify-center mr-4 text-sm text-white h-9 w-9 max-w-none rounded-xl" />
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mb-1 text-sm font-normal leading-normal"><span class="font-semibold">New Message</span> from Matthias</h6>
+                                                <p class="mb-0 text-xs leading-tight text-slate-400">
+                                                    <i class="mr-1 fa fa-clock"></i>
+                                                    13 minutes ago
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="relative mb-2">
+                                    <a class="ease py-1.2 clear-both block w-full whitespace-nowrap rounded-lg px-4 transition-colors duration-300 hover:bg-gray-200 hover:text-slate-700" href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="my-auto">
+                                                <img src="redvelvet.png" class="inline-flex items-center justify-center mr-4 text-sm text-white bg-gradient-to-tl from-zinc-800 to-zinc-700 h-9 w-9 max-w-none rounded-xl" />
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mb-1 text-sm font-normal leading-normal"><span class="font-semibold">New Album</span> by Red Velvet</h6>
+                                                <p class="mb-0 text-xs leading-tight text-slate-400">
+                                                    <i class="mr-1 fa fa-clock"></i>
+                                                    1 day
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a class="ease py-1.2 clear-both block w-full whitespace-nowrap rounded-lg px-4 transition-colors duration-300 hover:bg-gray-200 hover:text-slate-700" href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="inline-flex items-center justify-center my-auto mr-4 text-sm text-white transition-all duration-200 ease-nav-brand bg-gradient-to-tl from-slate-600 to-slate-300 h-9 w-9 rounded-xl">
+                                                <i class="fas fa-credit-card"></i>
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mb-1 text-sm font-normal leading-normal">Payment Success</h6>
+                                                <p class="mb-0 text-xs leading-tight text-slate-400">
+                                                    <i class="mr-1 fa fa-clock"></i>
+                                                    2 days
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="w-full px-6 py-6 mx-auto">
+            <div class="flex flex-wrap -mx-3">
+                <div class="w-full max-w-full px-3 mt-0 lg:flex-none">
+                    <div class="border-black/12.5 shadow-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
+                        <div class="p-4 pb-0 mb-0 rounded-t-4">
+                            <div class="flex justify-between items-center">
+                                <h6 class="mb-2 text-slate-700">Article List</h6>
+                                <button class="bg-[#f26a1b] text-white py-2 px-4 rounded-full text-sm hover:bg-[#ff7a3d] transition-colors duration-300" onclick="openAddArticleModal()">
+                                    <i class="fas fa-plus mr-2"></i> Add New Article
+                                </button>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="items-center w-full mb-4 align-top border-collapse border-gray-200">
+                                <thead>
+                                    <tr class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+                                        <th class="py-3 px-6 text-left">ID</th>
+                                        <th class="py-3 px-6 text-left">Article Title</th>
+                                        <th class="py-3 px-6 text-left">Author</th>
+                                        <th class="py-3 px-6 text-left">Date</th>
+                                        <th class="py-3 px-6 text-center">Status</th>
+                                        <th class="py-3 px-6 text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-700 text-sm font-light">
+                                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                                        <td class="py-3 px-6 text-left whitespace-nowrap">ART-001</td>
+                                        <td class="py-3 px-6 text-left">Tips for Keeping Your Pet Cat Healthy...</td>
+                                        <td class="py-3 px-6 text-left">Admin Haustiery</td>
+                                        <td class="py-3 px-6 text-left">2025-05-20</td>
+                                        <td class="py-3 px-6 text-center">
+                                            <span class="bg-green-200 text-green-700 py-1 px-3 rounded-full text-xs">Published</span>
+                                        </td>
+                                        <td class="py-3 px-6 text-center">
+                                            <button class="text-blue-500 hover:text-blue-700 mx-1" title="Edit" onclick="openEditArticleModal('ART-001', 'Tips for Keeping Your Pet Cat Healthy...', 'Admin Haustiery', '2025-05-20', 'Published', 'This is the complete content of the article on cat care tips. This is just an example and will be replaced with actual data from the database.')"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-500 hover:text-red-700 mx-1" title="Delete" onclick="deleteArticle('ART-001')"><i class="fas fa-trash-alt"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                                        <td class="py-3 px-6 text-left whitespace-nowrap">ART-002</td>
+                                        <td class="py-3 px-6 text-left">The Importance of Balanced Nutrition for Your Dog</td>
+                                        <td class="py-3 px-6 text-left">Veterinarian Lisa</td>
+                                        <td class="py-3 px-6 text-left">2025-05-15</td>
+                                        <td class="py-3 px-6 text-center">
+                                            <span class="bg-green-200 text-green-700 py-1 px-3 rounded-full text-xs">Published</span>
+                                        </td>
+                                        <td class="py-3 px-6 text-center">
+                                            <button class="text-blue-500 hover:text-blue-700 mx-1" title="Edit" onclick="openEditArticleModal('ART-002', 'The Importance of Balanced Nutrition for Your Dog', 'Veterinarian Lisa', '2025-05-15', 'Published', 'This is the complete content of the article on dog nutrition. This is just an example and will be replaced with actual data from the database.')"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-500 hover:text-red-700 mx-1" title="Delete" onclick="deleteArticle('ART-002')"><i class="fas fa-trash-alt"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                                        <td class="py-3 px-6 text-left whitespace-nowrap">ART-003</td>
+                                        <td class="py-3 px-6 text-left">How to Train Your Pet Rabbit</td>
+                                        <td class="py-3 px-6 text-left">Pet Expert Rini</td>
+                                        <td class="py-3 px-6 text-left">2025-05-10</td>
+                                        <td class="py-3 px-6 text-center">
+                                            <span class="bg-yellow-200 text-yellow-700 py-1 px-3 rounded-full text-xs">Draft</span>
+                                        </td>
+                                        <td class="py-3 px-6 text-center">
+                                            <button class="text-blue-500 hover:text-blue-700 mx-1" title="Edit" onclick="openEditArticleModal('ART-003', 'How to Train Your Pet Rabbit', 'Pet Expert Rini', '2025-05-10', 'Draft', 'This is the complete content of the article on training rabbits. This is just an example and will be replaced with actual data from the database.')"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-500 hover:text-red-700 mx-1" title="Delete" onclick="deleteArticle('ART-003')"><i class="fas fa-trash-alt"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="flex justify-center mt-4 mb-4">
+                            <nav class="flex items-center space-x-2">
+                                <a href="#" class="px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-200">Previous</a>
+                                <a href="#" class="px-3 py-2 rounded-lg bg-[#f26a1b] text-white">1</a>
+                                <a href="#" class="px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-200">2</a>
+                                <a href="#" class="px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-200">3</a>
+                                <a href="#" class="px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-200">Next</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="pt-4">
+                <div class="w-full px-6 mx-auto">
+                    <div class="flex flex-wrap items-center -mx-3 lg:justify-between">
+                        <div class="w-full max-w-full px-3 mt-0 mb-6 shrink-0 lg:mb-0 lg:w-1/2 lg:flex-none">
+                            <div class="text-sm leading-normal text-center text-slate-500 lg:text-left">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear() + ",");
+                                </script>
+                                made with <i class="fa fa-heart"></i> by
+                                <a href="https://www.creative-tim.com" class="font-semibold text-slate-700" target="_blank">Haustiery Team</a>
+                                for the better pet shop.
+                            </div>
+                        </div>
+                        <div class="w-full max-w-full px-3 mt-0 shrink-0 lg:w-1/2 lg:flex-none">
+                            <ul class="flex flex-wrap justify-center pl-0 mb-0 list-none lg:justify-end">
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com" class="block px-4 pt-0 pb-1 text-sm font-semibold transition-colors ease-in-out text-slate-500" target="_blank">Haustiery Team</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com/presentation" class="block px-4 pt-0 pb-1 text-sm font-semibold transition-colors ease-in-out text-slate-500" target="_blank">About Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://creative-tim.com/blog" class="block px-4 pt-0 pb-1 text-sm font-semibold transition-colors ease-in-out text-slate-500" target="_blank">Blog</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com/license" class="block px-4 pt-0 pb-1 pr-0 text-sm font-semibold transition-colors ease-in-out text-slate-500" target="_blank">License</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <div id="articleModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-[9999]">
+        <div class="relative top-20 mx-auto p-5 border w-full max-w-2xl shadow-lg rounded-md bg-white">
+            <div class="flex justify-between items-center pb-3">
+                <h3 class="text-xl font-bold text-slate-700" id="articleModalTitle">Add New Article</h3>
+                <button class="text-gray-400 hover:text-gray-600" onclick="closeArticleModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="mt-2">
+                <form id="articleForm">
+                    <input type="hidden" id="articleId" name="articleId"> <div class="mb-4">
+                        <label for="articleTitle" class="block text-gray-700 text-sm font-bold mb-2">Article Title:</label>
+                        <input type="text" id="articleTitle" name="articleTitle" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter article title" required>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="mb-4">
+                            <label for="articleAuthor" class="block text-gray-700 text-sm font-bold mb-2">Author:</label>
+                            <input type="text" id="articleAuthor" name="articleAuthor" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter author name" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="articleDate" class="block text-gray-700 text-sm font-bold mb-2">Date:</label>
+                            <input type="date" id="articleDate" name="articleDate" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="articleStatus" class="block text-gray-700 text-sm font-bold mb-2">Status:</label>
+                        <select id="articleStatus" name="articleStatus" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <option value="Published">Published</option>
+                            <option value="Draft">Draft</option>
+                            <option value="Archived">Archived</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="articleContent" class="block text-gray-700 text-sm font-bold mb-2">Content:</label>
+                        <textarea id="articleContent" name="articleContent" rows="8" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Write article content here..." required></textarea>
+                    </div>
+                    <div class="flex justify-end gap-2">
+                        <button type="button" class="bg-gray-300 text-gray-700 py-2 px-4 rounded-full hover:bg-gray-400 transition-colors duration-300" onclick="closeArticleModal()">Cancel</button>
+                        <button type="submit" class="bg-[#0a3b4a] text-white py-2 px-4 rounded-full hover:bg-[#ff7a3d] transition-colors duration-300">Save Article</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function toggleSidenav() {
+            const sidenav = document.getElementById('sidenav-main');
+            sidenav.classList.toggle('-translate-x-full');
+            sidenav.classList.toggle('translate-x-0');
+        }
+
+        document.querySelectorAll('[dropdown-trigger]').forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const dropdownMenu = this.nextElementSibling;
+                dropdownMenu.classList.toggle('opacity-0');
+                dropdownMenu.classList.toggle('pointer-events-none');
+                dropdownMenu.classList.toggle('transform-dropdown-show');
+            });
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('[dropdown-trigger]') && !event.target.closest('[dropdown-menu]')) {
+                document.querySelectorAll('[dropdown-menu]').forEach(menu => {
+                    menu.classList.add('opacity-0');
+                    menu.classList.add('pointer-events-none');
+                    menu.classList.remove('transform-dropdown-show');
+                });
+            }
+        });
+
+        // Modal functionality for Articles
+        const articleModal = document.getElementById('articleModal');
+        const articleModalTitle = document.getElementById('articleModalTitle');
+        const articleForm = document.getElementById('articleForm');
+        const articleIdInput = document.getElementById('articleId');
+        const articleTitleInput = document.getElementById('articleTitle');
+        const articleAuthorInput = document.getElementById('articleAuthor');
+        const articleDateInput = document.getElementById('articleDate');
+        const articleStatusSelect = document.getElementById('articleStatus');
+        const articleContentInput = document.getElementById('articleContent');
+
+        function openAddArticleModal() {
+            articleModalTitle.textContent = 'Add New Article';
+            articleForm.reset(); // Clear form fields
+            articleIdInput.value = ''; // Ensure ID is clear for new article
+            // You might want to pre-fill the date with today's date
+            articleDateInput.valueAsDate = new Date();
+            articleModal.classList.remove('hidden');
+        }
+
+        function openEditArticleModal(id, title, author, date, status, content) {
+            articleModalTitle.textContent = 'Edit Article';
+            articleIdInput.value = id;
+            articleTitleInput.value = title;
+            articleAuthorInput.value = author;
+            articleDateInput.value = date;
+            articleStatusSelect.value = status;
+            articleContentInput.value = content;
+            articleModal.classList.remove('hidden');
+        }
+
+        function closeArticleModal() {
+            articleModal.classList.add('hidden');
+        }
+
+        articleForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            const formData = new FormData(articleForm);
+            const articleData = {};
+            for (let [key, value] of formData.entries()) {
+                articleData[key] = value;
+            }
+
+            console.log('Article Data:', articleData);
+            // In a real application, you would send this data to your backend
+            if (articleData.articleId) {
+                alert(`Article with ID ${articleData.articleId} updated! (This is a demo, requires backend integration)`);
+            } else {
+                alert('New article added! (This is a demo, requires backend integration)');
+            }
+            closeArticleModal();
+            // Optionally, you might want to refresh the table data here
+        });
+
+        function deleteArticle(articleId) {
+            if (confirm(`Are you sure you want to delete article with ID: ${articleId}?`)) {
+                console.log(`Deleting article with ID: ${articleId}`);
+                alert('Article deleted! (This is a demo, requires backend integration)');
+                // In a real application, you'd send a DELETE request to your backend
+                // and then remove the row from the table or reload the table
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Transaction Details - Haustiery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Poppins', sans-serif;
+            }
+        }
+        @layer components {
+            .glow-paw {
+                color: #f26a1b;
+                font-size: 22px;
+                animation: glow 2s infinite alternate;
+                text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+            }
+            @keyframes glow {
+                from {
+                    text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+                }
+                to {
+                    text-shadow: 0 0 10px #ff944d, 0 0 20px #ff944d, 0 0 30px #ff944d;
+                }
+            }
+            .nav-link.active::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                height: 2px;
+                width: 100%;
+                background: orange;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none; /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden bg-gradient-to-r from-[#f8f0db] via-[#e6dcc5] to-[#0a3b4a] flex">
+
+    <aside class="fixed inset-y-0 left-0 flex-wrap items-center justify-between block w-64 p-4 my-4 overflow-y-auto bg-white border-0 shadow-xl rounded-2xl z-50 transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0" id="sidenav-main">
+        <div class="h-19">
+            <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 lg:hidden" onclick="toggleSidenav()"></i>
+            <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" href="index.html">
+                <i class="fas fa-paw glow-paw"></i>
+                <span class="ml-1 font-semibold text-xl">Haustiery</span>
+            </a>
+        </div>
+        <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
+        <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
+            <ul class="flex flex-col pl-0 mb-0">
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="dashboard.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-home text-base leading-normal text-[#f26a1b]"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Dashboard</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 bg-orange-100 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-[#f26a1b] transition-colors" href="transaction-history.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-receipt text-base leading-normal text-orange-500"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Transaction History</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="user-management.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-user text-base leading-normal text-[#f26a1b]"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">User Management</span>
+                    </a>
+                </li>
+                <li class="w-full mt-4">
+                    <h6 class="pl-6 ml-2 text-xs font-bold leading-tight uppercase text-slate-700 opacity-60">Admin Pages</h6>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="manage-products.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-box text-base leading-normal text-purple-500"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Manage Products</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="manage-articles.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-newspaper text-base leading-normal text-pink-500"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Manage Articles</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out lg:ml-64 rounded-xl flex-1">
+        <nav class="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start" navbar-main navbar-scroll="false">
+            <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
+                <nav>
+                    <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
+                        <li class="text-sm leading-normal">
+                            <a class="text-white opacity-50" href="javascript:;">Pages</a>
+                        </li>
+                        <li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']">Transaction History</li>
+                        <li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']" aria-current="page">Transaction Details</li>
+                    </ol>
+                    <h6 class="mb-0 font-bold text-white capitalize">Transaction Details</h6>
+                </nav>
+
+                <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
+                    <div class="flex items-center md:ml-auto md:pr-4">
+                        <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease">
+                            <span class="text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <input type="text" class="pl-9 text-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow" placeholder="Type here..." />
+                        </div>
+                    </div>
+                    <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
+                        <li class="flex items-center">
+                            <a href="admin-profile.html" class="block px-0 py-2 text-sm font-semibold text-white transition-all ease-nav-brand">
+                                <i class="fa fa-user sm:mr-1"></i>
+                                <span class="hidden sm:inline">Sherly</span>
+                            </a>
+                        </li>
+                        <li class="flex items-center pl-4 lg:hidden">
+                            <a href="javascript:;" class="block p-0 text-sm text-white transition-all ease-nav-brand" onclick="toggleSidenav()">
+                                <div class="w-4.5 overflow-hidden">
+                                    <i class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"></i>
+                                    <i class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"></i>
+                                    <i class="ease relative block h-0.5 rounded-sm bg-white transition-all"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="flex items-center px-4">
+                            <a href="javascript:;" class="p-0 text-sm text-white transition-all ease-nav-brand">
+                                <i class="cursor-pointer fa fa-cog"></i>
+                            </a>
+                        </li>
+                        <li class="relative flex items-center pr-2">
+                            <p class="hidden transform-dropdown-show"></p>
+                            <a href="javascript:;" class="block p-0 text-sm text-white transition-all ease-nav-brand" dropdown-trigger aria-expanded="false">
+                                <i class="cursor-pointer fa fa-bell"></i>
+                            </a>
+                            <ul dropdown-menu class="text-sm transform-dropdown before:font-awesome before:leading-default before:duration-350 before:ease lg:shadow-3xl duration-250 min-w-44 before:sm:right-8 before:text-5.5 pointer-events-none absolute right-0 top-0 z-50 origin-top list-none rounded-lg border-0 border-solid border-transparent bg-white bg-clip-padding px-2 py-4 text-left text-slate-500 opacity-0 transition-all before:absolute before:right-2 before:left-auto before:top-0 before:z-50 before:inline-block before:font-normal before:text-white before:antialiased before:transition-all before:content-['\f0d8'] sm:-mr-6 lg:absolute lg:right-0 lg:left-auto lg:mt-2 lg:block lg:cursor-pointer">
+                                <li class="relative mb-2">
+                                    <a class="ease py-1.2 clear-both block w-full whitespace-nowrap rounded-lg bg-transparent px-4 duration-300 hover:bg-gray-200 hover:text-slate-700 lg:transition-colors" href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="my-auto">
+                                                <img src="matthias.png" class="inline-flex items-center justify-center mr-4 text-sm text-white h-9 w-9 max-w-none rounded-xl" />
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mb-1 text-sm font-normal leading-normal"><span class="font-semibold">New Message</span> from Matthias</h6>
+                                                <p class="mb-0 text-xs leading-tight text-slate-400">
+                                                    <i class="mr-1 fa fa-clock"></i>
+                                                    13 minutes ago
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="relative mb-2">
+                                    <a class="ease py-1.2 clear-both block w-full whitespace-nowrap rounded-lg px-4 transition-colors duration-300 hover:bg-gray-200 hover:text-slate-700" href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="my-auto">
+                                                <img src="redvelvet.png" class="inline-flex items-center justify-center mr-4 text-sm text-white bg-gradient-to-tl from-zinc-800 to-zinc-700 h-9 w-9 max-w-none rounded-xl" />
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mb-1 text-sm font-normal leading-normal"><span class="font-semibold">New Album</span> by Red Velvet</h6>
+                                                <p class="mb-0 text-xs leading-tight text-slate-400">
+                                                    <i class="mr-1 fa fa-clock"></i>
+                                                    1 day
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a class="ease py-1.2 clear-both block w-full whitespace-nowrap rounded-lg px-4 transition-colors duration-300 hover:bg-gray-200 hover:text-slate-700" href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="inline-flex items-center justify-center my-auto mr-4 text-sm text-white transition-all duration-200 ease-nav-brand bg-gradient-to-tl from-slate-600 to-slate-300 h-9 w-9 rounded-xl">
+                                                <i class="fas fa-credit-card"></i>
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mb-1 text-sm font-normal leading-normal">Payment Success</h6>
+                                                <p class="mb-0 text-xs leading-tight text-slate-400">
+                                                    <i class="mr-1 fa fa-clock"></i>
+                                                    2 days
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="w-full px-6 py-6 mx-auto">
+            <div class="flex flex-wrap -mx-3">
+                <div class="w-full max-w-full px-3 mt-0 lg:flex-none">
+                    <div class="border-black/12.5 shadow-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
+                        <div class="p-4 pb-0 mb-0 rounded-t-4">
+                            <h6 class="mb-2 text-slate-700">Transaction Details #HAU-TRX-001</h6>
+                        </div>
+                        <div class="p-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+                                <div>
+                                    <p class="font-bold">Transaction ID:</p>
+                                    <p id="detailTransactionId">#HAU-TRX-001</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Transaction Date:</p>
+                                    <p id="detailTransactionDate">2025-05-20</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Status:</p>
+                                    <p id="detailTransactionStatus"><span class="bg-green-200 text-green-700 py-1 px-3 rounded-full text-xs">Completed</span></p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Total Amount:</p>
+                                    <p id="detailTransactionTotal">$75.00</p>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <p class="font-bold mb-2">Purchased Products:</p>
+                                    <table id="detailTransactionProductList" class="items-center w-full align-top border-collapse border-gray-200">
+                                        <thead>
+                                            <tr class="bg-gray-50 text-gray-600 uppercase text-xs leading-normal">
+                                                <th class="py-2 px-4 text-left">Product</th>
+                                                <th class="py-2 px-4 text-left">Quantity</th>
+                                                <th class="py-2 px-4 text-right">Unit Price</th>
+                                                <th class="py-2 px-4 text-right">Subtotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-gray-700 text-sm font-light">
+                                            <tr class="border-b border-gray-100">
+                                                <td class="py-2 px-4">Premium Dog Food 1kg</td>
+                                                <td class="py-2 px-4">2</td>
+                                                <td class="py-2 px-4 text-right">$25.00</td>
+                                                <td class="py-2 px-4 text-right">$50.00</td>
+                                            </tr>
+                                            <tr class="border-b border-gray-100">
+                                                <td class="py-2 px-4">Dog Chew Toy</td>
+                                                <td class="py-2 px-4">1</td>
+                                                <td class="py-2 px-4 text-right">$15.00</td>
+                                                <td class="py-2 px-4 text-right">$15.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="py-2 px-4 font-bold" colspan="3">Overall Total:</td>
+                                                <td class="py-2 px-4 text-right font-bold">$75.00</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <p class="font-bold">Shipping Address:</p>
+                                    <p id="detailShippingAddress">Foxglove Street No. 123, Garden City, West State, 12345</p>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <p class="font-bold">Payment Method:</p>
+                                    <p id="detailPaymentMethod">Bank Transfer</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-end mt-6">
+                                <a href="transaction-history.html" class="bg-gray-300 text-gray-700 py-2 px-4 rounded-full hover:bg-gray-400 transition-colors duration-300">Back to History</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="pt-4">
+                <div class="w-full px-6 mx-auto">
+                    <div class="flex flex-wrap items-center -mx-3 lg:justify-between">
+                        <div class="w-full max-w-full px-3 mt-0 mb-6 shrink-0 lg:mb-0 lg:w-1/2 lg:flex-none">
+                            <div class="text-sm leading-normal text-center text-slate-500 lg:text-left">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear() + ",");
+                                </script>
+                                made with <i class="fa fa-heart"></i> by
+                                <a href="https://www.creative-tim.com" class="font-semibold text-slate-700" target="_blank">Haustiery Team</a>
+                                for the better pet shop.
+                            </div>
+                        </div>
+                        <div class="w-full max-w-full px-3 mt-0 shrink-0 lg:w-1/2 lg:flex-none">
+                            <ul class="flex flex-wrap justify-center pl-0 mb-0 list-none lg:justify-end">
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com" class="block px-4 pt-0 pb-1 text-sm font-semibold transition-colors ease-in-out text-slate-500" target="_blank">Haustiery Team</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com/presentation" class="block px-4 pt-0 pb-1 text-sm font-semibold transition-colors ease-in-out text-slate-500" target="_blank">About Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://creative-tim.com/blog" class="block px-4 pt-0 pb-1 text-sm font-semibold transition-colors ease-in-out text-slate-500" target="_blank">Blog</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com/license" class="block px-4 pt-0 pb-1 pr-0 text-sm font-semibold transition-colors ease-in-out text-slate-500" target="_blank">License</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        function toggleSidenav() {
+            const sidenav = document.getElementById('sidenav-main');
+            sidenav.classList.toggle('-translate-x-full');
+            sidenav.classList.toggle('translate-x-0');
+        }
+
+        document.querySelectorAll('[dropdown-trigger]').forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const dropdownMenu = this.nextElementSibling;
+                dropdownMenu.classList.toggle('opacity-0');
+                dropdownMenu.classList.toggle('pointer-events-none');
+                dropdownMenu.classList.toggle('transform-dropdown-show');
+            });
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('[dropdown-trigger]') && !event.target.closest('[dropdown-menu]')) {
+                document.querySelectorAll('[dropdown-menu]').forEach(menu => {
+                    menu.classList.add('opacity-0');
+                    menu.classList.add('pointer-events-none');
+                    menu.classList.remove('transform-dropdown-show');
+                });
+            }
+        });
+
+        // Function to populate transaction details (dummy data for demonstration)
+        function loadTransactionDetails(transactionId) {
+            // In a real application, you would fetch data from a backend
+            // based on the transactionId
+            const transactions = {
+                '#HAU-TRX-001': {
+                    id: '#HAU-TRX-001',
+                    date: '2025-05-20',
+                    status: 'Completed',
+                    total: '$75.00',
+                    products: [
+                        { name: 'Premium Dog Food 1kg', quantity: 2, unitPrice: '$25.00', subtotal: '$50.00' },
+                        { name: 'Dog Chew Toy', quantity: 1, unitPrice: '$15.00', subtotal: '$15.00' }
+                    ],
+                    shippingAddress: 'Foxglove Street No. 123, Garden City, West State, 12345',
+                    paymentMethod: 'Bank Transfer'
+                },
+                '#HAU-TRX-002': {
+                    id: '#HAU-TRX-002',
+                    date: '2025-05-15',
+                    status: 'Processing',
+                    total: '$120.00',
+                    products: [
+                        { name: 'Large Cat Cage', quantity: 1, unitPrice: '$100.00', subtotal: '$100.00' },
+                        { name: 'Cat Litter 5kg', quantity: 2, unitPrice: '$10.00', subtotal: '$20.00' }
+                    ],
+                    shippingAddress: 'Foxglove Street No. 123, Garden City, West State, 12345',
+                    paymentMethod: 'Credit Card'
+                },
+                '#HAU-TRX-003': {
+                    id: '#HAU-TRX-003',
+                    date: '2025-05-10',
+                    status: 'Cancelled',
+                    total: '$30.00',
+                    products: [
+                        { name: 'Cat Shampoo', quantity: 1, unitPrice: '$15.00', subtotal: '$15.00' },
+                        { name: 'Cat Brush', quantity: 1, unitPrice: '$15.00', subtotal: '$15.00' }
+                    ],
+                    shippingAddress: 'Foxglove Street No. 123, Garden City, West State, 12345',
+                    paymentMethod: 'E-Wallet'
+                }
+            };
+
+            const transaction = transactions[transactionId];
+
+            if (transaction) {
+                document.getElementById('detailTransactionId').textContent = transaction.id;
+                document.getElementById('detailTransactionDate').textContent = transaction.date;
+                document.getElementById('detailTransactionTotal').textContent = transaction.total;
+                document.getElementById('detailShippingAddress').textContent = transaction.shippingAddress;
+                document.getElementById('detailPaymentMethod').textContent = transaction.paymentMethod;
+
+                let statusHtml = '';
+                if (transaction.status === 'Completed') {
+                    statusHtml = `<span class="bg-green-200 text-green-700 py-1 px-3 rounded-full text-xs">${transaction.status}</span>`;
+                } else if (transaction.status === 'Processing') {
+                    statusHtml = `<span class="bg-orange-200 text-orange-700 py-1 px-3 rounded-full text-xs">${transaction.status}</span>`;
+                } else if (transaction.status === 'Cancelled') {
+                    statusHtml = `<span class="bg-red-200 text-red-700 py-1 px-3 rounded-full text-xs">${transaction.status}</span>`;
+                }
+                document.getElementById('detailTransactionStatus').innerHTML = statusHtml;
+
+                // Populate products table
+                const productTableBody = document.querySelector('#detailTransactionProductList tbody');
+                productTableBody.innerHTML = ''; // Clear previous data
+                let overallTotal = 0;
+                transaction.products.forEach(product => {
+                    const row = `
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 px-4">${product.name}</td>
+                            <td class="py-2 px-4">${product.quantity}</td>
+                            <td class="py-2 px-4 text-right">${product.unitPrice}</td>
+                            <td class="py-2 px-4 text-right">${product.subtotal}</td>
+                        </tr>
+                    `;
+                    productTableBody.innerHTML += row;
+                    overallTotal += parseFloat(product.subtotal.replace('$', ''));
+                });
+
+                const totalRow = `
+                    <tr>
+                        <td class="py-2 px-4 font-bold" colspan="3">Overall Total:</td>
+                        <td class="py-2 px-4 text-right font-bold">$${overallTotal.toFixed(2)}</td>
+                    </tr>
+                `;
+                productTableBody.innerHTML += totalRow;
+
+                // Update the title in the card header
+                document.querySelector('.p-4.pb-0.mb-0.rounded-t-4 h6').textContent = `Transaction Details ${transaction.id}`;
+
+            } else {
+                // Handle case where transaction ID is not found (e.g., redirect or show error)
+                alert('Transaction details not found!');
+                window.location.href = 'transaction-history.html'; // Redirect back to history
+            }
+        }
+
+        // transaction-details.html (modifikasi script yang sudah ada)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ambil ID dari sessionStorage
+            const transactionId = sessionStorage.getItem('currentTransactionId');
+
+            if (transactionId) {
+                loadTransactionDetails(transactionId);
+                // Opsional: Hapus ID dari sessionStorage setelah digunakan
+                sessionStorage.removeItem('currentTransactionId');
+            } else {
+                // Jika tidak ada ID di sessionStorage (misal, user langsung akses halaman ini)
+                alert('Tidak ada detail transaksi yang dipilih. Mengarahkan kembali ke riwayat.');
+                window.location.href = 'transaction-history.html';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Articles - Haustiery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Poppins', sans-serif;
+            }
+        }
+        @layer components {
+            .glow-paw {
+                color: #f26a1b;
+                font-size: 22px;
+                animation: glow 2s infinite alternate;
+                text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+            }
+            @keyframes glow {
+                from {
+                    text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+                }
+                to {
+                    text-shadow: 0 0 10px #ff944d, 0 0 20px #ff944d, 0 0 30px #ff944d;
+                }
+            }
+            .dog-image-hover {
+                filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.7));
+                transform: scale(1.03);
+            }
+            .nav-link.active::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                height: 2px;
+                width: 100%;
+                background: orange;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none; /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+            }
+            /* New or Modified Styles */
+            .article-card {
+                transition: all 0.3s ease-in-out;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Softer initial shadow */
+            }
+            .article-card:hover {
+                transform: translateY(-5px) scale(1.01); /* Lift and slightly enlarge */
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* More pronounced shadow on hover */
+            }
+            .read-more-btn {
+                background-color: #f26a1b;
+                color: white;
+                padding: 8px 16px;
+                border-radius: 9999px; /* Fully rounded */
+                transition: background-color 0.3s ease-in-out;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .read-more-btn:hover {
+                background-color: #ff7a3d;
+            }
+            .pagination-btn {
+                padding: 8px 16px;
+                border-radius: 0.5rem;
+                transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            }
+            .pagination-btn.active-page {
+                background-color: #f26a1b;
+                color: white;
+                font-weight: 600;
+            }
+            .pagination-btn:not(.active-page):hover {
+                background-color: #e5e7eb; /* gray-200 */
+                color: #f26a1b;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden bg-gradient-to-r from-[#f8f0db] via-[#e6dcc5] to-[#0a3b4a]">
+
+    <header class="py-5">
+        <div class="nav flex justify-between items-center px-4 md:px-10 max-w-7xl mx-auto">
+            <div class="logo font-bold text-xl flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-2 text-inherit no-underline">
+                    <i class="fas fa-paw glow-paw"></i> Haustiery
+                </a>
+            </div>
+            <nav class="hidden md:flex">
+                <a href="index.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Home</a>
+                <a href="archive-article.html" class="nav-link active relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Articles</a>
+                <a href="product-catalog.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Shop</a>
+                <a href="services.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Services</a>
+                <a href="contact.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Contact</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="cart.html" class="text-gray-800 hover:text-[#f26a1b] transition-colors duration-200" aria-label="Shopping Cart">
+                  <i class="fas fa-shopping-cart text-xl"></i>
+                </a>
+                <a href="user-profile.html" class="flex items-center text-gray-800 hover:text-[#f26a1b] transition-colors duration-200">
+                  <i class="fa fa-user text-xl sm:mr-1"></i>
+                  <span class="hidden sm:inline font-medium">Sherly</span>
+                </a>
+              </div>
+        </div>
+    </header>
+
+    <main class="min-h-[60vh] py-8 px-4 md:px-8">
+        <section class="max-w-7xl mx-auto text-center py-12 mb-8 bg-white/70 backdrop-blur-sm rounded-3xl shadow-xl">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#0a3b4a] mb-4 leading-tight">Explore Our Pet Care Insights</h1>
+            <p class="text-lg text-gray-700 max-w-2xl mx-auto">Dive into our collection of articles, offering expert advice and helpful tips for every pet owner. From nutrition to training, we've got you covered!</p>
+        </section>
+        
+        <section class="max-w-7xl mx-auto bg-white p-6 md:p-8 rounded-2xl shadow-lg">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#0a3b4a] mb-8 text-center">Latest Articles</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-xl overflow-hidden article-card">
+                    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Cat" class="w-full h-48 object-cover rounded-t-xl">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-[#0a3b4a] mb-2">Pet Cat Care Tips</h3>
+                        <p class="text-sm text-gray-600 mb-3">By: Haustiery Admin | May 20, 2025</p>
+                        <p class="text-gray-700 text-sm mb-4">Essential guide to keeping your feline friend healthy and happy. Learn about nutrition, grooming, and playtime activities...</p>
+                        <a href="article-detail.html" class="read-more-btn">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl overflow-hidden article-card">
+                    <img src="https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Dog" class="w-full h-48 object-cover rounded-t-xl">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-[#0a3b4a] mb-2">Balanced Nutrition for Your Dog</h3>
+                        <p class="text-sm text-gray-600 mb-3">By: Veterinarian Lisa | May 15, 2025</p>
+                        <p class="text-gray-700 text-sm mb-4">Discover the key nutrients your dog needs at different life stages. Our vet explains proper portion sizes and dietary requirements...</p>
+                        <a href="article-detail.html" class="read-more-btn">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl overflow-hidden article-card">
+                    <img src="https://images.unsplash.com/photo-1556838803-cc94986cb631?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Rabbit" class="w-full h-48 object-cover rounded-t-xl">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-[#0a3b4a] mb-2">Training Your Pet Rabbit</h3>
+                        <p class="text-sm text-gray-600 mb-3">By: Animal Expert Rini | May 10, 2025</p>
+                        <p class="text-gray-700 text-sm mb-4">Learn effective techniques for litter training and teaching simple commands to your bunny. Build trust and strengthen your bond...</p>
+                        <a href="article-detail.html" class="read-more-btn">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-center mt-10">
+                <nav class="flex items-center space-x-2">
+                    <a href="#" class="pagination-btn text-gray-700">Previous</a>
+                    <a href="#" class="pagination-btn active-page">1</a>
+                    <a href="#" class="pagination-btn text-gray-700">2</a>
+                    <a href="#" class="pagination-btn text-gray-700">3</a>
+                    <a href="#" class="pagination-btn text-gray-700">Next</a>
+                </nav>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#0a3b4a] text-white text-center py-8 px-5 text-sm">
+        <p>&copy; 2025 Haustiery. All rights reserved. | Designed with <i class="fas fa-heart"></i> for pets and pet lovers.</p>
+    </footer>
+
+</body>
+</html>
