@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Order Details - Haustiery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Poppins', sans-serif;
+            }
+        }
+        @layer components {
+            .glow-paw {
+                color: #f26a1b;
+                font-size: 22px;
+                animation: glow 2s infinite alternate;
+                text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+            }
+            @keyframes glow {
+                from {
+                    text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+                }
+                to {
+                    text-shadow: 0 0 10px #ff944d, 0 0 20px #ff944d, 0 0 30px #ff944d;
+                }
+            }
+            .nav-link.active::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                height: 2px;
+                width: 100%;
+                background: orange;
+            }
+            .card {
+                @apply bg-white p-6 rounded-2xl shadow-lg;
+            }
+            .primary-button {
+                @apply bg-[#f26a1b] text-white py-2 px-4 rounded-full text-base font-bold hover:bg-[#ff7a3d] transition-colors duration-300;
+            }
+            .secondary-button {
+                @apply bg-gray-100 border border-gray-300 text-gray-800 py-2 px-4 rounded-full text-base font-medium hover:bg-gray-200 transition-colors duration-200;
+            }
+            .detail-item {
+                @apply flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0;
+            }
+            .detail-label {
+                @apply text-gray-600 text-sm md:text-base font-medium;
+            }
+            .detail-value {
+                @apply text-gray-800 text-sm md:text-base font-semibold;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden bg-gradient-to-r from-[#f8f0db] via-[#e6dcc5] to-[#0a3b4a]">
+
+    <header class="py-5">
+        <div class="nav flex justify-between items-center px-4 md:px-10 max-w-7xl mx-auto">
+            <div class="logo font-bold text-xl flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-2 text-inherit no-underline">
+                    <i class="fas fa-paw glow-paw"></i> Haustiery
+                </a>
+            </div>
+            <nav class="hidden md:flex">
+                <a href="index.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Home</a>
+                <a href="archive-article.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Articles</a>
+                <a href="product-catalog.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Shop</a>
+                <a href="services.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Services</a>
+                <a href="contact.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Contact</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="cart.html" class="text-gray-800 hover:text-[#f26a1b] transition-colors duration-200" aria-label="Shopping Cart">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                </a>
+                <div class="relative" x-data="{ open: false }" @click.away="open = false">
+                    <button @click="open = !open" class="flex items-center text-gray-800 hover:text-[#f26a1b] transition-colors duration-200 focus:outline-none">
+                        <i class="fa fa-user text-xl sm:mr-1"></i>
+                        <span class="hidden sm:inline font-medium mr-2">Sherly</span>
+                        <i class="fas fa-chevron-down text-xs" :class="{'rotate-180': open, 'rotate-0': !open}"></i>
+                    </button>
+                    <div x-show="open" x-transition:enter="transition ease-out duration-100 transform" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75 transform" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 origin-top-right">
+                        <a href="dashboard-user.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                        <a href="user-profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Profile</a>
+                        <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t border-gray-100 mt-1 pt-1">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="min-h-[70vh] py-8 px-4 md:px-8">
+        <section class="max-w-4xl mx-auto card p-6 md:p-8">
+            <div class="flex items-center justify-between mb-6">
+                <h1 class="text-3xl md:text-4xl font-bold text-[#0a3b4a]">Order Details</h1>
+                <span class="px-4 py-2 bg-green-100 text-green-700 text-sm font-semibold rounded-full">Order #HAU20250610-001</span>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold text-[#0a3b4a] mb-4 flex items-center gap-2">
+                    <i class="fas fa-truck-fast"></i> Order Status: <span class="text-green-600 ml-2">Shipped</span>
+                </h2>
+                <div class="bg-gray-50 p-4 rounded-lg text-sm text-gray-700">
+                    <p class="mb-2">Your order was shipped on June 10, 2025.</p>
+                    <p class="mb-2">Estimated delivery: June 13, 2025 - June 15, 2025.</p>
+                    <p>Tracking Number: <span class="font-bold text-[#f26a1b]">TRK1234567890</span></p>
+                    <button class="primary-button mt-4 text-sm">Track Order</button>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold text-[#0a3b4a] mb-4"><i class="fas fa-box-open"></i> Products Ordered</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <img src="dogfood1.png" alt="Dry Food Chicken" class="w-20 h-20 object-contain rounded-md border border-gray-200">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-800">Dry Food Chicken</h3>
+                            <p class="text-gray-600 text-sm">Variant: Adult, 5kg</p>
+                            <p class="text-gray-600 text-sm">Qty: 1</p>
+                        </div>
+                        <p class="text-lg font-bold text-[#f26a1b]">$50.00</p>
+                    </div>
+                    <div class="flex items-center gap-4 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <img src="groomingbrush.jpg" alt="Pet Grooming Brush" class="w-20 h-20 object-contain rounded-md border border-gray-200">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-800">Pet Grooming Brush</h3>
+                            <p class="text-gray-600 text-sm">Variant: Large</p>
+                            <p class="text-gray-600 text-sm">Qty: 2</p>
+                        </div>
+                        <p class="text-lg font-bold text-[#f26a1b]">$50.00</p>
+                    </div>
+                    <div class="flex items-center gap-4 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <img src="food1.png" alt="Wet Food Salmon" class="w-20 h-20 object-contain rounded-md border border-gray-200">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-800">Wet Food Salmon</h3>
+                            <p class="text-gray-600 text-sm">Variant: Kitten, 1kg</p>
+                            <p class="text-gray-600 text-sm">Qty: 1</p>
+                        </div>
+                        <p class="text-lg font-bold text-[#f26a1b]">$40.00</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="card p-6">
+                    <h2 class="text-xl font-semibold text-[#0a3b4a] mb-4 flex items-center gap-2">
+                        <i class="fas fa-file-invoice"></i> Billing Information
+                    </h2>
+                    <div class="space-y-2">
+                        <p class="text-gray-700"><span class="font-medium">Name:</span> Sherly</p>
+                        <p class="text-gray-700"><span class="font-medium">Email:</span> sherly@example.com</p>
+                        <p class="text-gray-700"><span class="font-medium">Payment Method:</span> Credit Card (**** **** **** 1234)</p>
+                    </div>
+                </div>
+                <div class="card p-6">
+                    <h2 class="text-xl font-semibold text-[#0a3b4a] mb-4 flex items-center gap-2">
+                        <i class="fas fa-shipping-fast"></i> Shipping Information
+                    </h2>
+                    <div class="space-y-2">
+                        <p class="text-gray-700"><span class="font-medium">Recipient:</span> Sherly</p>
+                        <p class="text-gray-700"><span class="font-medium">Address:</span> Jl. Contoh Raya No. 123, Surabaya, Jawa Timur, 60123</p>
+                        <p class="text-gray-700"><span class="font-medium">Phone:</span> +62 812 3456 7890</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-6 mb-8">
+                <h2 class="text-xl font-semibold text-[#0a3b4a] mb-4"><i class="fas fa-receipt"></i> Order Summary</h2>
+                <div class="space-y-2">
+                    <div class="detail-item">
+                        <span class="detail-label">Subtotal:</span>
+                        <span class="detail-value">$140.00</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Shipping Cost:</span>
+                        <span class="detail-value">$10.00</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Discount:</span>
+                        <span class="detail-value text-red-500">-$5.00</span>
+                    </div>
+                    <div class="detail-item pt-4 border-t border-gray-200">
+                        <span class="text-lg md:text-xl font-bold text-[#0a3b4a]">Total Amount:</span>
+                        <span class="text-xl md:text-2xl font-bold text-[#f26a1b]">$145.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-center gap-4 flex-wrap">
+                <button class="primary-button"><i class="fas fa-print mr-2"></i> Print Invoice</button>
+                <button class="secondary-button"><i class="fas fa-question-circle mr-2"></i> Need Help?</button>
+                <a href="dashboard-user.html" class="secondary-button no-underline"><i class="fas fa-arrow-left mr-2"></i> Back to Dashboard</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#0a3b4a] text-white text-center py-8 px-5 text-sm">
+        <p>&copy; 2025 Haustiery. All rights reserved. | Designed with <i class="fas fa-heart"></i> for pets and pet lovers.</p>
+    </footer>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</body>
+</html>

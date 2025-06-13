@@ -71,13 +71,21 @@
             </nav>
             <div class="flex items-center gap-4">
                 <a href="cart.html" class="text-gray-800 hover:text-[#f26a1b] transition-colors duration-200" aria-label="Shopping Cart">
-                  <i class="fas fa-shopping-cart text-xl"></i>
+                    <i class="fas fa-shopping-cart text-xl"></i>
                 </a>
-                <a href="user-profile.html" class="flex items-center text-gray-800 hover:text-[#f26a1b] transition-colors duration-200">
-                  <i class="fa fa-user text-xl sm:mr-1"></i>
-                  <span class="hidden sm:inline font-medium">Sherly</span>
-                </a>
-              </div>
+                <div class="relative" x-data="{ open: false }" @click.away="open = false">
+                    <button @click="open = !open" class="flex items-center text-gray-800 hover:text-[#f26a1b] transition-colors duration-200 focus:outline-none">
+                        <i class="fa fa-user text-xl sm:mr-1"></i>
+                        <span class="hidden sm:inline font-medium mr-2">Sherly</span>
+                        <i class="fas fa-chevron-down text-xs" :class="{'rotate-180': open, 'rotate-0': !open}"></i>
+                    </button>
+                    <div x-show="open" x-transition:enter="transition ease-out duration-100 transform" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75 transform" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 origin-top-right">
+                        <a href="dashboard-user.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 nav-link active">Dashboard</a>
+                        <a href="user-profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil Saya</a>
+                        <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t border-gray-100 mt-1 pt-1">Logout</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -175,6 +183,8 @@
     <footer class="bg-[#0a3b4a] text-white text-center py-8 px-5 text-sm">
         <p>&copy; 2025 Haustiery. All rights reserved. | Designed with <i class="fas fa-heart"></i> for pets and pet lovers.</p>
     </footer>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 </body>
 </html>

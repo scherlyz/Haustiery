@@ -117,110 +117,125 @@
 <body class="min-h-screen overflow-x-hidden bg-gradient-to-r from-[#f8f0db] via-[#e6dcc5] to-[#0a3b4a]">
 
     <header class="py-5">
-        <div class="nav flex justify-between items-center px-4 md:px-10 max-w-7xl mx-auto">
+        <div class="nav flex justify-between items-center px-4 md:px-10 max-w-7xl mx-auto relative">
             <div class="logo font-bold text-xl flex items-center gap-2">
                 <a href="index.html" class="flex items-center gap-2 text-inherit no-underline">
                     <i class="fas fa-paw glow-paw"></i> Haustiery
                 </a>
             </div>
-            <nav class="hidden md:flex">
-                <a href="index.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Home</a>
-                <a href="archive-article.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200 active">Articles</a>
-                <a href="product-catalog.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Shop</a>
-                <a href="services.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Services</a>
-                <a href="contact.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Contact</a>
+
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-button" class="text-gray-800 text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <nav id="mobile-menu" class="hidden md:flex flex-col md:flex-row absolute md:relative top-full left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none z-20 py-4 md:py-0">
+                <a href="index.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200 py-2 md:py-0">Home</a>
+                <a href="archive-article.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200 active py-2 md:py-0">Articles</a>
+                <a href="product-catalog.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200 py-2 md:py-0">Shop</a>
+                <a href="services.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200 py-2 md:py-0">Services</a>
+                <a href="contact.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200 py-2 md:py-0">Contact</a>
             </nav>
             <div class="flex items-center gap-4">
                 <a href="cart.html" class="text-gray-800 hover:text-[#f26a1b] transition-colors duration-200" aria-label="Shopping Cart">
-                  <i class="fas fa-shopping-cart text-xl"></i>
+                    <i class="fas fa-shopping-cart text-xl"></i>
                 </a>
-                <a href="user-profile.html" class="flex items-center text-gray-800 hover:text-[#f26a1b] transition-colors duration-200">
-                  <i class="fa fa-user text-xl sm:mr-1"></i>
-                  <span class="hidden sm:inline font-medium">Sherly</span>
-                </a>
-              </div>
+                <div class="relative" x-data="{ open: false }" @click.away="open = false">
+                    <button @click="open = !open" class="flex items-center text-gray-800 hover:text-[#f26a1b] transition-colors duration-200 focus:outline-none">
+                        <i class="fa fa-user text-xl sm:mr-1"></i>
+                        <span class="hidden sm:inline font-medium mr-2">Sherly</span>
+                        <i class="fas fa-chevron-down text-xs" :class="{'rotate-180': open, 'rotate-0': !open}"></i>
+                    </button>
+                    <div x-show="open" x-transition:enter="transition ease-out duration-100 transform" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75 transform" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 origin-top-right">
+                        <a href="dashboard-user.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 nav-link active">Dashboard</a>
+                        <a href="user-profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil Saya</a>
+                        <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t border-gray-100 mt-1 pt-1">Logout</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
     <main class="min-h-[60vh] py-8 px-4 md:px-8">
-        <section class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-2xl shadow-lg">
-            <a href="archive-article.html" class="back-button mb-6">
+        <section class="max-w-xl lg:max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-2xl shadow-lg">
+            <a href="archive-article.html" class="back-button mb-6 text-sm md:text-base">
                 <i class="fas fa-arrow-left"></i> Back to All Articles
             </a>
 
             <div class="article-image-container">
-                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Cat" class="w-full h-80 object-cover">
+                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Cat" class="w-full h-60 md:h-80 object-cover">
             </div>
 
-            <h1 class="text-3xl md:text-4xl font-bold text-[#0a3b4a] mb-3 leading-tight">Tips for Caring for Your Pet Cat to Keep Them Healthy and Happy</h1>
-            <p class="text-sm text-gray-600 mb-8 flex items-center gap-2">
+            <h1 class="text-2xl md:text-4xl font-bold text-[#0a3b4a] mb-3 leading-tight">Tips for Caring for Your Pet Cat to Keep Them Healthy and Happy</h1>
+            <p class="text-xs md:text-sm text-gray-600 mb-8 flex flex-wrap items-center gap-x-2 gap-y-1">
                 <i class="fas fa-user-edit text-[#f26a1b]"></i> By: Haustiery Admin 
-                <span class="mx-1">|</span> 
-                <i class="fas fa-calendar-alt text-[#f26a1b]"></i> May 20, 2025 
-                <span class="mx-1">|</span> 
-                <i class="fas fa-tag text-[#f26a1b]"></i> Category: Cats
+                <span class="mx-1 hidden md:inline">|</span> 
+                <i class="fas fa-calendar-alt text-[#f26a1b] md:ml-0"></i> May 20, 2025 
+                <span class="mx-1 hidden md:inline">|</span> 
+                <i class="fas fa-tag text-[#f26a1b] md:ml-0"></i> Category: Cats
             </p>
 
-            <div class="prose max-w-none text-gray-700 leading-relaxed text-base md:text-lg">
-                <p class="mb-4 first-letter:text-5xl first-letter:font-bold first-letter:text-[#f26a1b] first-letter:mr-2 first-letter:float-left">
+            <div class="prose max-w-none text-gray-700 leading-relaxed text-sm md:text-base">
+                <p class="mb-4 first-letter:text-4xl md:first-letter:text-5xl first-letter:font-bold first-letter:text-[#f26a1b] first-letter:mr-2 first-letter:float-left">
                     Caring for a pet cat is not just about providing food and water; it also involves attention, affection, and understanding their needs. A well-cared-for cat will be a loyal and happy companion for you.
                 </p>
                 
-                <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-3 mt-8 border-b-2 border-[#f26a1b] pb-2 inline-block">Proper Nutrition</h2>
+                <h2 class="text-xl md:text-2xl font-semibold text-[#0a3b4a] mb-3 mt-6 md:mt-8 border-b-2 border-[#f26a1b] pb-2 inline-block">Proper Nutrition</h2>
                 <p class="mb-4">
                     Choose high-quality cat food formulated for your cat's age and health condition. There are many options for dry and wet food on the market. Always ensure they have access to clean, fresh water.
                 </p>
 
-                <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-3 mt-8 border-b-2 border-[#f26a1b] pb-2 inline-block">Health and Hygiene</h2>
+                <h2 class="text-xl md:text-2xl font-semibold text-[#0a3b4a] mb-3 mt-6 md:mt-8 border-b-2 border-[#f26a1b] pb-2 inline-block">Health and Hygiene</h2>
                 <p class="mb-4">
                     Schedule regular visits to the vet for vaccinations, health check-ups, and deworming. Keep the litter box clean to ensure your cat's comfort and to prevent illness. Bathe your cat if necessary, although most cats are quite good at grooming themselves.
                 </p>
 
-                <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-3 mt-8 border-b-2 border-[#f26a1b] pb-2 inline-block">Safe and Comfortable Environment</h2>
+                <h2 class="text-xl md:text-2xl font-semibold text-[#0a3b4a] mb-3 mt-6 md:mt-8 border-b-2 border-[#f26a1b] pb-2 inline-block">Safe and Comfortable Environment</h2>
                 <p class="mb-4">
                     Provide a comfortable bed, play areas, and a safe space for your cat to explore. Make sure there are no dangerous objects or poisonous plants within reach. A scratching post is also important to maintain their claws and protect your furniture.
                 </p>
 
-                <h2 class="text-2xl font-semibold text-[#0a3b4a] mb-3 mt-8 border-b-2 border-[#f26a1b] pb-2 inline-block">Stimulation and Interaction</h2>
+                <h2 class="text-xl md:text-2xl font-semibold text-[#0a3b4a] mb-3 mt-6 md:mt-8 border-b-2 border-[#f26a1b] pb-2 inline-block">Stimulation and Interaction</h2>
                 <p class="mb-4">
                     Cats need mental and physical stimulation. Spend time playing with them using interactive toys. Give them enough affection and attention. Every cat has a unique personality, so pay attention to what makes your cat happy and comfortable.
                 </p>
 
-                <p class="mb-4 text-center italic text-gray-800">
+                <p class="mb-4 text-center italic text-gray-800 text-sm md:text-base">
                     "By applying the tips above, you will help your pet cat live a healthy, active, and happy life by your side."
                 </p>
             </div>
 
-            <div class="mt-12 pt-8 border-t border-gray-200">
-                <h2 class="text-2xl font-bold text-[#0a3b4a] mb-6">Comments (2)</h2>
+            <div class="mt-10 md:mt-12 pt-6 md:pt-8 border-t border-gray-200">
+                <h2 class="text-xl md:text-2xl font-bold text-[#0a3b4a] mb-5 md:mb-6">Comments (2)</h2>
                 
                 <div class="comment-card p-4 rounded-lg mb-4">
-                    <p class="font-semibold text-[#0a3b4a]">User123</p>
+                    <p class="font-semibold text-[#0a3b4a] text-base md:text-lg">User123</p>
                     <p class="text-gray-600 text-xs mb-2">May 21, 2025, 10:30 AM</p>
-                    <p class="text-gray-700 text-sm">The article is very informative! My cat is much healthier after following these tips.</p>
+                    <p class="text-gray-700 text-sm md:text-base">The article is very informative! My cat is much healthier after following these tips.</p>
                 </div>
 
                 <div class="comment-card p-4 rounded-lg mb-4">
-                    <p class="font-semibold text-[#0a3b4a]">CatLover</p>
+                    <p class="font-semibold text-[#0a3b4a] text-base md:text-lg">CatLover</p>
                     <p class="text-gray-600 text-xs mb-2">May 22, 2025, 2:00 PM</p>
-                    <p class="text-gray-700 text-sm">Thanks for the guide, it's very helpful for new cat owners like me!</p>
+                    <p class="text-gray-700 text-sm md:text-base">Thanks for the guide, it's very helpful for new cat owners like me!</p>
                 </div>
 
-                <h3 class="text-xl font-semibold text-[#0a3b4a] mb-4 mt-10">Leave a Comment</h3>
+                <h3 class="text-lg md:text-xl font-semibold text-[#0a3b4a] mb-4 mt-8 md:mt-10">Leave a Comment</h3>
                 <form>
                     <div class="mb-4">
                         <label for="comment-name" class="block text-gray-700 text-sm font-bold mb-2">Your Name:</label>
-                        <input type="text" id="comment-name" name="comment-name" class="form-input-field w-full" placeholder="Full Name">
+                        <input type="text" id="comment-name" name="comment-name" class="form-input-field w-full text-sm md:text-base" placeholder="Full Name">
                     </div>
                     <div class="mb-4">
                         <label for="comment-email" class="block text-gray-700 text-sm font-bold mb-2">Your Email:</label>
-                        <input type="email" id="comment-email" name="comment-email" class="form-input-field w-full" placeholder="email@example.com">
+                        <input type="email" id="comment-email" name="comment-email" class="form-input-field w-full text-sm md:text-base" placeholder="email@example.com">
                     </div>
                     <div class="mb-6">
                         <label for="comment-text" class="block text-gray-700 text-sm font-bold mb-2">Comment:</label>
-                        <textarea id="comment-text" name="comment-text" rows="5" class="form-input-field w-full" placeholder="Write your comment here..."></textarea>
+                        <textarea id="comment-text" name="comment-text" rows="5" class="form-input-field w-full text-sm md:text-base" placeholder="Write your comment here..."></textarea>
                     </div>
-                    <button type="submit" class="submit-comment-btn">Submit Comment</button>
+                    <button type="submit" class="submit-comment-btn text-sm md:text-base">Submit Comment</button>
                 </form>
             </div>
         </section>
@@ -230,5 +245,13 @@
         <p>&copy; 2025 Haustiery. All rights reserved. | Designed with <i class="fas fa-heart"></i> for pets and pet lovers.</p>
     </footer>
 
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        // Hamburger menu functionality
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>

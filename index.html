@@ -2,14 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Haustiery</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
     <style type="text/tailwindcss">
       @layer base {
         body {
@@ -44,234 +50,482 @@
           width: 100%;
           background: orange;
         }
+        /* Custom scrollbar for product-carousel and service-cards */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
       }
     </style>
-  
   </head>
 
-<body class="min-h-screen overflow-x-hidden bg-gradient-to-r from-[#f8f0db] via-[#e6dcc5] to-[#0a3b4a]">
-  <!-- Header -->
-  <header>
-    <div class="nav flex justify-between items-center py-5 px-10">
-      <div class="logo font-bold text-xl flex items-center gap-2">
-        <a href="index.html" class="flex items-center gap-2 text-inherit no-underline">
+  <body
+    class="min-h-screen overflow-x-hidden bg-gradient-to-r from-[#f8f0db] via-[#e6dcc5] to-[#0a3b4a]"
+  >
+    <header>
+      <div
+        class="nav flex justify-between items-center py-5 px-5 md:px-10 relative"
+      >
+        <div class="logo font-bold text-xl flex items-center gap-2">
+          <a
+            href="index.html"
+            class="flex items-center gap-2 text-inherit no-underline"
+          >
             <i class="fas fa-paw glow-paw"></i> Haustiery
-        </a>
-    </div>
-      <nav class="flex">
-        <a href="index.html" class="nav-link active relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Home</a>
-        <a href="archive-article.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Articles</a>
-        <a href="product-catalog.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Shop</a>
-        <a href="services.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Services</a>
-        <a href="contact.html" class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200">Contact</a>
-      </nav>
-      <div class="flex items-center gap-4">
-        <a href="cart.html" class="text-gray-800 hover:text-[#f26a1b] transition-colors duration-200" aria-label="Shopping Cart">
-          <i class="fas fa-shopping-cart text-xl"></i>
-        </a>
-        <a href="user-profile.html" class="flex items-center text-gray-800 hover:text-[#f26a1b] transition-colors duration-200">
-          <i class="fa fa-user text-xl sm:mr-1"></i>
-          <span class="hidden sm:inline font-medium">Sherly</span>
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Section -->
-  <main class="main-section flex p-10 justify-between items-center relative">
-    <div class="left-content w-1/2 pr-10 pl-16 relative z-10">
-      <p class="availability text-[#00aa8f] text-sm mb-2">Available in select states</p>
-      <h1 class="text-5xl leading-tight mb-5">
-        <span class="font-bold text-[#0a3b4a]">HAUSTIERY</span><br>
-        <span class="text-[#f26a1b] font-bold">APPROACH TO</span><br>
-        <span class="font-bold text-[#0a3b4a]">WELLNESS</span>
-      </h1>
-      <button class="learn-more bg-[#f26a1b] text-white border-none px-6 py-3 rounded-full text-base cursor-pointer hover:bg-[#ff7a3d] transition-colors duration-300">
-        Learn More
-      </button>
-    </div>
-    <div class="right-content w-1/2 relative flex flex-col items-center justify-center">
-      <img src="brush.png" alt="brush" class="brush-image absolute z-0 w-[550px] opacity-90 top-2 left-10 pointer-events-none">
-      <img src="dog.png" alt="Dog in hoodie" class="dog-image mb-0 ml-24 w-[380px] max-w-full max-h-[400px] object-contain relative z-10 filter drop-shadow-[0_0_10px_rgba(255,165,0,0.4)] transition-all duration-300 ease-in-out hover:dog-image-hover"/>
-    </div>
-  </main>
-
-  <!-- Promo Section -->
-  <section class="promo-section overflow-visible relative z-5 bg-gradient-to-r  to-[#1d2c35] py-8 px-8 pt-0 text-white">
-    <div class="promo-content flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between relative gap-5 max-w-7xl mx-auto min-h-[250px] md:min-h-[300px] pt-10 md:pt-16">
-      <img src="cat.png" alt="Cat" class="promo-cat w-[200px] transform -translate-y-20 filter drop-shadow-[0_10px_15px_rgba(0,0,0,0.2)]"/>
-    
-      <div class="promo-info max-w-xs mb-5 text-base leading-6 text-center md:text-left text-orange-500">
-        <p>Join today and enjoy <strong>Whiskas 5%</strong><br>Discount on your 1st order.<br>For a limited time</p>
-      </div>
-    
-      <div class="promo-products flex gap-5 mb-5">
-        <div class="product-card bg-white rounded-xl p-4 transform -translate-y-5 shadow-lg w-[120px] h-[120px] flex items-center justify-center">
-          <img src="food1.png" alt="Product 1" class="max-w-full max-h-full object-contain">
+          </a>
         </div>
-        <div class="product-card bg-white rounded-xl p-4 transform -translate-y-5 shadow-lg w-[120px] h-[120px] flex items-center justify-center">
-          <img src="food2.png" alt="Product 2" class="max-w-full max-h-full object-contain">
+
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-button" class="text-gray-800 text-2xl focus:outline-none">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+
+        <nav id="mobile-menu" class="hidden md:flex flex-col md:flex-row absolute md:relative top-full left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none z-20 py-4 md:py-0">
+          <a
+            href="index.html"
+            class="nav-link active relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200 py-2 md:py-0"
+            >Home</a
+          >
+          <a
+            href="archive-article.html"
+            class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200 py-2 md:py-0"
+            >Articles</a
+          >
+          <a
+            href="product-catalog.html"
+            class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200 py-2 md:py-0"
+            >Shop</a
+          >
+          <a
+            href="services.html"
+            class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200 py-2 md:py-0"
+            >Services</a
+          >
+          <a
+            href="contact.html"
+            class="nav-link relative mx-4 no-underline text-gray-800 font-medium hover:text-[#f26a1b] transition-colors duration-200 py-2 md:py-0"
+            >Contact</a
+          >
+        </nav>
+        <div class="flex items-center gap-4">
+          <a
+            href="cart.html"
+            class="text-gray-800 hover:text-[#f26a1b] transition-colors duration-200"
+            aria-label="Shopping Cart"
+          >
+            <i class="fas fa-shopping-cart text-xl"></i>
+          </a>
+          <div class="relative" x-data="{ open: false }" @click.away="open = false">
+            <button
+              @click="open = !open"
+              class="flex items-center text-gray-800 hover:text-[#f26a1b] transition-colors duration-200 focus:outline-none"
+            >
+              <i class="fa fa-user text-xl sm:mr-1"></i>
+              <span class="hidden sm:inline font-medium mr-2">Sherly</span>
+              <i
+                class="fas fa-chevron-down text-xs"
+                :class="{'rotate-180': open, 'rotate-0': !open}"
+              ></i>
+            </button>
+            <div
+              x-show="open"
+              x-transition:enter="transition ease-out duration-100 transform"
+              x-transition:enter-start="opacity-0 scale-95"
+              x-transition:enter-end="opacity-100 scale-100"
+              x-transition:leave="transition ease-in duration-75 transform"
+              x-transition:leave-start="opacity-100 scale-100"
+              x-transition:leave-end="opacity-0 scale-95"
+              class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 origin-top-right"
+            >
+              <a
+                href="dashboard-user.html"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 nav-link active"
+                >Dashboard</a
+              >
+              <a
+                href="user-profile.html"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >Profil Saya</a
+              >
+              <a
+                href="index.html"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t border-gray-100 mt-1 pt-1"
+                >Logout</a
+              >
+            </div>
+          </div>
         </div>
       </div>
-    
-      <div class="stats flex gap-10 justify-center items-center mt-2">
-        <div class="text-center text-sm leading-4"><strong>200K+</strong><br>Nutritional Complete</div>
-        <div class="text-center text-sm leading-4"><strong>$4</strong><br>Product Sale</div>
-        <div class="text-center text-sm leading-4"><strong>97%</strong><br>Client Satisfaction</div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- About Section -->
-  <section class="about-section bg-[#fdf5e7] py-16 px-10">
-    <div class="about-container flex items-center gap-12 flex-wrap">
-      <div class="about-image relative flex-shrink-0">
-        <img src="main-dog.png" alt="Woman with dog" class="main-photo w-[250px] rounded-2xl shadow-lg"/>
-        <img src="small-dog.png" alt="Small dog" class="overlay-photo w-[120px] absolute top-5 -right-10 rounded-xl shadow-md transform rotate-6"/>
-      </div>
-      <div class="about-text max-w-[500px]">
-        <h2 class="text-2xl mb-2 text-[#0a3b4a] font-bold">ABOUT US</h2>
-        <p class="text-sm text-gray-700 mb-5">
-          Until one has loved an animal, a part of one's soul remains unawakened.
-          We believe in it and we believe in easy access to things that are good
-          for our mind, body and spirit.
+    <main
+      class="main-section flex flex-col-reverse md:flex-row p-5 md:p-10 justify-between items-center relative"
+    >
+      <div
+        class="left-content w-full md:w-1/2 pr-0 md:pr-10 pl-5 md:pl-16 relative z-10 text-center md:text-left mt-10 md:mt-0"
+      >
+        <p class="availability text-[#00aa8f] text-sm mb-2">
+          Available in select states
         </p>
-        <ul class="list-none p-0 mb-5">
-          <li class="mb-2 text-sm flex items-center"><span class="check-icon text-orange-500 mr-2 font-bold">✔</span> Over 10 years of experience</li>
-          <li class="mb-2 text-sm flex items-center"><span class="check-icon text-orange-500 mr-2 font-bold">✔</span> 20 talented vets ready to help you</li>
-          <li class="mb-2 text-sm flex items-center"><span class="check-icon text-orange-500 mr-2 font-bold">✔</span> High-quality products only</li>
-        </ul>
-        <button class="about-button bg-[#e74c3c] text-white border-none px-4 py-2 text-sm rounded cursor-pointer hover:bg-[#ff7a3d] transition-colors duration-300">
-          More about us
+        <h1 class="text-4xl sm:text-5xl leading-tight mb-5">
+          <span class="font-bold text-[#0a3b4a]">HAUSTIERY</span><br />
+          <span class="text-[#f26a1b] font-bold">APPROACH TO</span><br />
+          <span class="font-bold text-[#0a3b4a]">WELLNESS</span>
+        </h1>
+        <button
+          class="learn-more bg-[#f26a1b] text-white border-none px-6 py-3 rounded-full text-base cursor-pointer hover:bg-[#ff7a3d] transition-colors duration-300"
+        >
+          Learn More
         </button>
       </div>
-    </div>
-  </section>
+      <div
+        class="right-content w-full md:w-1/2 relative flex flex-col items-center justify-center mt-10 md:mt-0"
+      >
+        <img
+          src="brush.png"
+          alt="brush"
+          class="brush-image absolute z-0 w-[300px] md:w-[550px] opacity-90 top-0 md:top-2 left-1/2 -translate-x-1/2 md:left-10 md:translate-x-0 pointer-events-none"
+        />
+        <img
+          src="dog.png"
+          alt="Dog in hoodie"
+          class="dog-image mb-0 ml-0 md:ml-24 w-[250px] md:w-[380px] max-w-full max-h-[300px] md:max-h-[400px] object-contain relative z-10 filter drop-shadow-[0_0_10px_rgba(255,165,0,0.4)] transition-all duration-300 ease-in-out hover:dog-image-hover"
+        />
+      </div>
+    </main>
 
-  <!-- Categories Section -->
-  <section class="container py-8 text-center bg-gradient-to-r from-[#fef4a0] text-gray-800">
-    <h1 class="title text-3xl mb-6 font-bold">Top Categories</h1>
-    <div class="categories flex justify-center gap-4 mb-8 max-w-5xl mx-auto flex-wrap">
-      <div class="category bg-white rounded-xl px-4 py-2 text-xl shadow cursor-pointer flex flex-col items-center">
-        <i class="fas fa-carrot"></i><span class="text-sm mt-1">Rabbit</span>
+    <section
+      class="promo-section overflow-visible relative z-5 bg-gradient-to-r to-[#1d2c35] py-8 px-5 pt-0 text-white"
+    >
+      <div
+        class="promo-content flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between relative gap-5 max-w-7xl mx-auto min-h-[250px] md:min-h-[300px] pt-10 md:pt-16 text-center"
+      >
+        <img
+          src="cat.png"
+          alt="Cat"
+          class="promo-cat w-[150px] md:w-[200px] transform -translate-y-10 md:-translate-y-20 filter drop-shadow-[0_10px_15px_rgba(0,0,0,0.2)]"
+        />
+
+        <div
+          class="promo-info max-w-xs mb-5 text-base leading-6 text-center text-orange-500"
+        >
+          <p>
+            Join today and enjoy <strong>Whiskas 5%</strong><br />Discount on
+            your 1st order.<br />For a limited time
+          </p>
+        </div>
+
+        <div class="promo-products flex gap-5 mb-5">
+          <div
+            class="product-card bg-white rounded-xl p-4 transform -translate-y-5 shadow-lg w-[100px] h-[100px] md:w-[120px] md:h-[120px] flex items-center justify-center"
+          >
+            <img
+              src="food1.png"
+              alt="Product 1"
+              class="max-w-full max-h-full object-contain"
+            />
+          </div>
+          <div
+            class="product-card bg-white rounded-xl p-4 transform -translate-y-5 shadow-lg w-[100px] h-[100px] md:w-[120px] md:h-[120px] flex items-center justify-center"
+          >
+            <img
+              src="food2.png"
+              alt="Product 2"
+              class="max-w-full max-h-full object-contain"
+            />
+          </div>
+        </div>
+
+        <div class="stats flex gap-5 md:gap-10 justify-center items-center mt-2 flex-wrap">
+          <div class="text-center text-sm leading-4">
+            <strong>200K+</strong><br />Nutritional Complete
+          </div>
+          <div class="text-center text-sm leading-4">
+            <strong>$4</strong><br />Product Sale
+          </div>
+          <div class="text-center text-sm leading-4">
+            <strong>97%</strong><br />Client Satisfaction
+          </div>
+        </div>
       </div>
-      <div class="category bg-white rounded-xl px-4 py-2 text-xl shadow cursor-pointer flex flex-col items-center">
-        <i class="fas fa-cat"></i><span class="text-sm mt-1">Cat</span>
+    </section>
+
+    <section class="about-section bg-[#fdf5e7] py-16 px-5 md:px-10">
+      <div class="about-container flex flex-col md:flex-row items-center gap-8 md:gap-12 flex-wrap justify-center">
+        <div class="about-image relative flex-shrink-0">
+          <img
+            src="main-dog.png"
+            alt="Woman with dog"
+            class="main-photo w-[200px] md:w-[250px] rounded-2xl shadow-lg"
+          />
+          <img
+            src="small-dog.png"
+            alt="Small dog"
+            class="overlay-photo w-[100px] md:w-[120px] absolute top-5 -right-5 md:-right-10 rounded-xl shadow-md transform rotate-6"
+          />
+        </div>
+        <div class="about-text max-w-[500px] text-center md:text-left">
+          <h2 class="text-2xl mb-2 text-[#0a3b4a] font-bold">ABOUT US</h2>
+          <p class="text-sm text-gray-700 mb-5">
+            Until one has loved an animal, a part of one's soul remains
+            unawakened. We believe in it and we believe in easy access to
+            things that are good for our mind, body and spirit.
+          </p>
+          <ul class="list-none p-0 mb-5 inline-block md:block">
+            <li class="mb-2 text-sm flex items-center">
+              <span class="check-icon text-orange-500 mr-2 font-bold"
+                >✔</span
+              >
+              Over 10 years of experience
+            </li>
+            <li class="mb-2 text-sm flex items-center">
+              <span class="check-icon text-orange-500 mr-2 font-bold"
+                >✔</span
+              >
+              20 talented vets ready to help you
+            </li>
+            <li class="mb-2 text-sm flex items-center">
+              <span class="check-icon text-orange-500 mr-2 font-bold"
+                >✔</span
+              >
+              High-quality products only
+            </li>
+          </ul>
+          <button
+            class="about-button bg-[#e74c3c] text-white border-none px-4 py-2 text-sm rounded cursor-pointer hover:bg-[#ff7a3d] transition-colors duration-300"
+          >
+            More about us
+          </button>
+        </div>
       </div>
-      <div class="category bg-white rounded-xl px-4 py-2 text-xl shadow cursor-pointer flex flex-col items-center border-2 border-[#f44336]">
-        <i class="fas fa-dog"></i><span class="text-sm mt-1">Dog</span>
+    </section>
+
+    <section class="container py-8 px-5 md:px-0 text-center bg-gradient-to-r from-[#fef4a0] text-gray-800">
+      <h1 class="title text-3xl mb-6 font-bold">Top Categories</h1>
+      <div
+        class="categories flex justify-center gap-3 md:gap-4 mb-8 max-w-5xl mx-auto flex-wrap"
+      >
+        <div
+          class="category bg-white rounded-xl px-3 py-2 text-xl shadow cursor-pointer flex flex-col items-center w-20 md:w-auto"
+        >
+          <i class="fas fa-carrot"></i><span class="text-xs md:text-sm mt-1">Rabbit</span>
+        </div>
+        <div
+          class="category bg-white rounded-xl px-3 py-2 text-xl shadow cursor-pointer flex flex-col items-center w-20 md:w-auto"
+        >
+          <i class="fas fa-cat"></i><span class="text-xs md:text-sm mt-1">Cat</span>
+        </div>
+        <div
+          class="category bg-white rounded-xl px-3 py-2 text-xl shadow cursor-pointer flex flex-col items-center border-2 border-[#f44336] w-20 md:w-auto"
+        >
+          <i class="fas fa-dog"></i><span class="text-xs md:text-sm mt-1">Dog</span>
+        </div>
+        <div
+          class="category bg-white rounded-xl px-3 py-2 text-xl shadow cursor-pointer flex flex-col items-center w-20 md:w-auto"
+        >
+          <i class="fas fa-feather-alt"></i><span class="text-xs md:text-sm mt-1">Bird</span>
+        </div>
+        <div
+          class="category bg-white rounded-xl px-3 py-2 text-xl shadow cursor-pointer flex flex-col items-center w-20 md:w-auto"
+        >
+          <i class="fas fa-fish"></i><span class="text-xs md:text-sm mt-1">Fish</span>
+        </div>
       </div>
-      <div class="category bg-white rounded-xl px-4 py-2 text-xl shadow cursor-pointer flex flex-col items-center">
-        <i class="fas fa-feather-alt "></i><span class="text-sm mt-1">Bird</span>
+
+      <div
+        class="product-carousel flex items-center justify-center bg-[#e53935] rounded-2xl p-4 gap-4 max-w-6xl mx-auto"
+      >
+        <button
+          class="nav-btn bg-transparent border-none text-3xl text-white cursor-pointer hidden md:block"
+          onclick="scrollProducts(-1)"
+        >
+          &#10094;
+        </button>
+        <div class="products flex gap-4 overflow-x-auto pb-2 scrollbar-hide" id="product-list">
+          <div class="product bg-white p-4 rounded-xl w-[120px] md:w-[150px] shadow flex-shrink-0">
+            <img src="dogfood1.png" alt="Dog Food 1" class="w-full mb-2" />
+            <h3 class="text-sm md:text-base my-2">Dry Food Chicken</h3>
+            <p class="text-sm md:text-base">$50</p>
+            <p class="text-xs md:text-sm">⭐ 4.8</p>
+          </div>
+          <div class="product bg-white p-4 rounded-xl w-[120px] md:w-[150px] shadow flex-shrink-0">
+            <img src="dogfood2.png" alt="Dog Food 2" class="w-full mb-2" />
+            <h3 class="text-sm md:text-base my-2">Chicken & Cheese</h3>
+            <p class="text-sm md:text-base">$60</p>
+            <p class="text-xs md:text-sm">⭐ 4.7</p>
+          </div>
+          <div class="product bg-white p-4 rounded-xl w-[120px] md:w-[150px] shadow flex-shrink-0">
+            <img src="dogfood3.png" alt="Dog Food 3" class="w-full mb-2" />
+            <h3 class="text-sm md:text-base my-2">Salmon & Vegetables</h3>
+            <p class="text-sm md:text-base">$45</p>
+            <p class="text-xs md:text-sm">⭐ 4.9</p>
+          </div>
+          <div class="product bg-white p-4 rounded-xl w-[120px] md:w-[150px] shadow flex-shrink-0">
+            <img src="dogfood4.png" alt="Dog Food 4" class="w-full mb-2" />
+            <h3 class="text-sm md:text-base my-2">Chicken Crispy</h3>
+            <p class="text-sm md:text-base">$55</p>
+            <p class="text-xs md:text-sm">⭐ 4.8</p>
+          </div>
+          <div class="product bg-white p-4 rounded-xl w-[120px] md:w-[150px] shadow flex-shrink-0">
+            <img src="dogfood5.png" alt="Dog Food 5" class="w-full mb-2" />
+            <h3 class="text-sm md:text-base my-2">NutriMeal</h3>
+            <p class="text-sm md:text-base">$60</p>
+            <p class="text-xs md:text-sm">⭐ 4.7</p>
+          </div>
+        </div>
+        <button
+          class="nav-btn bg-transparent border-none text-3xl text-white cursor-pointer hidden md:block"
+          onclick="scrollProducts(1)"
+        >
+          &#10095;
+        </button>
       </div>
-      <div class="category bg-white rounded-xl px-4 py-2 text-xl shadow cursor-pointer flex flex-col items-center">
-        <i class="fas fa-fish"></i><span class="text-sm mt-1">Fish</span>
+    </section>
+
+    <section class="services py-8 px-5 md:px-8 bg-[#fdf5e7] text-left">
+      <h2 class="title text-3xl mb-6 font-bold text-[#0a3b4a] text-center md:text-left">Our Services</h2>
+      <div
+        class="service-cards flex overflow-x-auto gap-4 pb-4 scroll-smooth max-w-7xl mx-auto scrollbar-hide"
+      >
+        <div
+          class="service-card bg-[#263238] text-white p-6 rounded-2xl min-w-[220px] md:min-w-[250px] flex-shrink-0 flex flex-col items-start shadow-md justify-between h-full"
+        >
+          <i class="fas fa-dog text-3xl mb-2"></i>
+          <h3 class="text-xl mb-2">Dog pet visit</h3>
+          <p class="text-sm mb-4">
+            30-minute visits for walks, playtime, feeding and cuddles. Perfect
+            for busy owners who want their pup exercised and happy.
+          </p>
+          <div class="service-buttons flex gap-2 text-sm">
+            <button
+              class="bg-[#f5f5dc] border-none rounded-xl px-4 py-2 cursor-pointer text-sm flex items-center gap-1 hover:bg-[#e0e0b1] text-orange-500"
+            >
+              🕒 30 min visit
+            </button>
+            <button
+              class="bg-[#f5f5dc] border-none rounded-xl px-4 py-2 cursor-pointer text-sm flex items-center gap-1 hover:bg-[#e0e0b1] text-orange-500"
+            >
+              $ 30
+            </button>
+          </div>
+        </div>
+        <div
+          class="service-card bg-[#263238] text-white p-6 rounded-2xl min-w-[220px] md:min-w-[250px] flex-shrink-0 flex flex-col items-start shadow-md justify-between h-full"
+        >
+          <i class="fas fa-cat text-3xl mb-2"></i>
+          <h3 class="text-xl mb-2">Cat pet visit</h3>
+          <p class="text-sm mb-4">
+            Essential care including feeding, litter cleaning and play. We adapt
+            to your cat's personality - whether social or shy.
+          </p>
+          <div class="service-buttons flex gap-2 text-sm">
+            <button
+              class="bg-[#f5f5dc] border-none rounded-xl px-4 py-2 cursor-pointer text-sm flex items-center gap-1 hover:bg-[#e0e0b1] text-orange-500"
+            >
+              🕒 30 min visit
+            </button>
+            <button
+              class="bg-[#f5f5dc] border-none rounded-xl px-4 py-2 cursor-pointer text-sm flex items-center gap-1 hover:bg-[#e0e0b1] text-orange-500"
+            >
+              $ 30
+            </button>
+          </div>
+        </div>
+        <div
+          class="service-card bg-[#263238] text-white p-6 rounded-2xl min-w-[220px] md:min-w-[250px] flex-shrink-0 flex flex-col items-start shadow-md justify-between h-full"
+        >
+          <i class="fas fa-dove text-3xl mb-2"></i>
+          <h3 class="text-xl mb-2">Bird pet visit</h3>
+          <p class="text-sm mb-4">
+            Specialized avian care: cage cleaning, fresh food/water, and safe
+            interaction time. We understand bird needs.
+          </p>
+          <div class="service-buttons flex gap-2 text-sm">
+            <button
+              class="bg-[#f5f5dc] border-none rounded-xl px-4 py-2 cursor-pointer text-sm flex items-center gap-1 hover:bg-[#e0e0b1] text-orange-500"
+            >
+              🕒 30 min visit
+            </button>
+            <button
+              class="bg-[#f5f5dc] border-none rounded-xl px-4 py-2 cursor-pointer text-sm flex items-center gap-1 hover:bg-[#e0e0b1] text-orange-500"
+            >
+              $ 25
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="featured-brands py-8 px-5 bg-[#f26a1b] text-center">
+      <h2 class="text-3xl mb-8 font-bold text-[#0a3b4a]">Featured Brands</h2>
+      <div class="brand-list flex gap-4 md:gap-8 justify-center flex-wrap">
+        <div
+          class="brand-item flex flex-col items-center max-w-[120px] md:max-w-[150px] bg-[#f9f9f9] rounded-xl p-4 shadow"
+        >
+          <img src="proplan.png" alt="Purina Pro Plan" class="max-w-full mb-2" />
+          <span class="text-xs md:text-sm text-black mt-1">Purina Pro Plan</span>
+        </div>
+        <div
+          class="brand-item flex flex-col items-center max-w-[120px] md:max-w-[150px] bg-[#f9f9f9] rounded-xl p-4 shadow"
+        >
+          <img src="wellness.png" alt="Wellness" class="max-w-full mb-2" />
+          <span class="text-xs md:text-sm text-black mt-1">Wellness</span>
+        </div>
+        <div
+          class="brand-item flex flex-col items-center max-w-[120px] md:max-w-[150px] bg-[#f9f9f9] rounded-xl p-4 shadow"
+        >
+          <img src="science-diet.png" alt="Hill's Science Diet" class="max-w-full mb-2" />
+          <span class="text-xs md:text-sm text-black mt-1">Hill's Science Diet</span>
+        </div>
+        <div
+          class="brand-item flex flex-col items-center max-w-[120px] md:max-w-[150px] bg-[#f9f9f9] rounded-xl p-4 shadow"
+        >
+          <img src="stella.png" alt="Stella & Chewy's" class="max-w-full mb-2" />
+          <span class="text-xs md:text-sm text-black mt-1">Stella & Chewy's</span>
+        </div>
+        <div
+          class="brand-item flex flex-col items-center max-w-[120px] md:max-w-[150px] bg-[#f9f9f9] rounded-xl p-4 shadow"
+        >
+          <img src="chuckit.png" alt="Chuckit!" class="max-w-full mb-2" />
+          <span class="text-xs md:text-sm text-black mt-1">Chuckit!</span>
+        </div>
+        <div
+          class="brand-item flex flex-col items-center max-w-[120px] md:max-w-[150px] bg-[#f9f9f9] rounded-xl p-4 shadow"
+        >
+          <img src="woof.png" alt="WOOF" class="max-w-full mb-2" />
+          <span class="text-xs md:text-sm text-black mt-1">WOOF</span>
+        </div>
       </div>
     </div>
 
-    <div class="product-carousel flex items-center justify-center bg-[#e53935] rounded-2xl p-4 gap-4 max-w-6xl mx-auto">
-      <button class="nav-btn bg-transparent border-none text-3xl text-white cursor-pointer">&#10094;</button>
-      <div class="products flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
-        <div class="product bg-white p-4 rounded-xl w-[150px] shadow flex-shrink-0">
-          <img src="dogfood1.png" alt="Dog Food 1" class="w-full mb-2">
-          <h3 class="text-base my-2">Dry Food Chicken</h3>
-          <p>$50</p>
-          <p>⭐ 4.8</p>
-        </div>
-        <div class="product bg-white p-4 rounded-xl w-[150px] shadow flex-shrink-0">
-          <img src="dogfood2.png" alt="Dog Food 2" class="w-full mb-2">
-          <h3 class="text-base my-2">Chicken & Cheese</h3>
-          <p>$60</p>
-          <p>⭐ 4.7</p>
-        </div>
-        <div class="product bg-white p-4 rounded-xl w-[150px] shadow flex-shrink-0">
-          <img src="dogfood3.png" alt="Dog Food 3" class="w-full mb-2">
-          <h3 class="text-base my-2">Salmon & Vegetables</h3>
-          <p>$45</p>
-          <p>⭐ 4.9</p>
-        </div>
-        <div class="product bg-white p-4 rounded-xl w-[150px] shadow flex-shrink-0">
-          <img src="dogfood4.png" alt="Dog Food 4" class="w-full mb-2">
-          <h3 class="text-base my-2">Chicken Crispy</h3>
-          <p>$55</p>
-          <p>⭐ 4.8</p>
-        </div>
-        <div class="product bg-white p-4 rounded-xl w-[150px] shadow flex-shrink-0">
-          <img src="dogfood5.png" alt="Dog Food 5" class="w-full mb-2">
-          <h3 class="text-base my-2">NutriMeal</h3>
-          <p>$60</p>
-          <p>⭐ 4.7</p>
-        </div>
-      </div>
-      <button class="nav-btn bg-transparent border-none text-3xl text-white cursor-pointer">&#10095;</button>
-    </div>
-  </section>
+    <footer class="bg-[#0a3b4a] text-white text-center py-8 px-5 text-sm">
+      <p>
+        &copy; 2025 Haustiery. All rights reserved. | Designed with
+        <i class="fas fa-heart"></i> for pets and pet lovers.
+      </p>
+    </footer>
 
-  <!-- Services Section -->
-  <section class="services py-8 px-4 md:px-8 bg-[#fdf5e7] text-left">
-    <h2 class="title text-3xl mb-6 font-bold text-[#0a3b4a]">Our Services</h2>
-    <div class="service-cards flex overflow-x-auto gap-4 pb-4 scroll-smooth max-w-7xl mx-auto">
-      <div class="service-card bg-[#263238] text-white p-6 rounded-2xl min-w-[250px] flex-shrink-0 flex flex-col items-start shadow-md justify-between h-full">
-        <i class="fas fa-dog text-3xl mb-2"></i> <h3 class="text-xl mb-2">Dog pet visit</h3>
-        <p class="text-sm mb-4">30-minute visits for walks, playtime, feeding and cuddles. Perfect for busy owners who want their pup exercised and happy.</p>
-        <div class="service-buttons flex gap-2">
-          <button class="bg-[#f5f5dc] border-none rounded-xl px-4 py-2 cursor-pointer text-sm flex items-center gap-1 hover:bg-[#e0e0b1] text-orange-500">🕒 30 min visit</button>
-          <button class="bg-[#f5f5dc] border-none rounded-xl px-4 py-2 cursor-pointer text-sm flex items-center gap-1 hover:bg-[#e0e0b1] text-orange-500">$ 30</button>
-        </div>
-      </div>
-      <div class="service-card bg-[#263238] text-white p-6 rounded-2xl min-w-[250px] flex-shrink-0 flex flex-col items-start shadow-md justify-between h-full">
-        <i class="fas fa-cat text-3xl mb-2"></i> <h3 class="text-xl mb-2">Cat pet visit</h3>
-        <p class="text-sm mb-4">Essential care including feeding, litter cleaning and play. We adapt to your cat's personality - whether social or shy.</p>
-        <div class="service-buttons flex gap-2">
-          <button class="bg-[#f5f5dc] border-none rounded-xl px-4 py-2 cursor-pointer text-sm flex items-center gap-1 hover:bg-[#e0e0b1] text-orange-500">🕒 30 min visit</button>
-          <button class="bg-[#f5f5dc] border-none rounded-xl px-4 py-2 cursor-pointer text-sm flex items-center gap-1 hover:bg-[#e0e0b1] text-orange-500">$ 30</button>
-        </div>
-      </div>
-      <div class="service-card bg-[#263238] text-white p-6 rounded-2xl min-w-[250px] flex-shrink-0 flex flex-col items-start shadow-md justify-between h-full">
-        <i class="fas fa-dove text-3xl mb-2"></i> <h3 class="text-xl mb-2">Bird pet visit</h3>
-        <p class="text-sm mb-4">Specialized avian care: cage cleaning, fresh food/water, and safe interaction time. We understand bird needs.</p>
-        <div class="service-buttons flex gap-2">
-          <button class="bg-[#f5f5dc] border-none rounded-xl px-4 py-2 cursor-pointer text-sm flex items-center gap-1 hover:bg-[#e0e0b1] text-orange-500">🕒 30 min visit</button>
-          <button class="bg-[#f5f5dc] border-none rounded-xl px-4 py-2 cursor-pointer text-sm flex items-center gap-1 hover:bg-[#e0e0b1] text-orange-500">$ 25</button>
-        </div>
-      </div>
-    </div>
-</section>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+      // Hamburger menu functionality
+      document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+      });
 
-  <!-- Featured Brands -->
-  <div class="featured-brands py-8 px-8 bg-[#f26a1b] text-center">
-    <h2 class="text-3xl mb-8 font-bold text-[#0a3b4a]">Featured Brands</h2>
-    <div class="brand-list flex gap-8 justify-center flex-wrap">
-      <div class="brand-item flex flex-col items-center max-w-[150px] bg-[#f9f9f9] rounded-xl p-4 shadow">
-        <img src="proplan.png" alt="Purina Pro Plan" class="max-w-full mb-2">
-        <span class="text-sm text-black mt-1">Purina Pro Plan</span>
-      </div>
-      <div class="brand-item flex flex-col items-center max-w-[150px] bg-[#f9f9f9] rounded-xl p-4 shadow">
-        <img src="wellness.png" alt="Wellness" class="max-w-full mb-2">
-        <span class="text-sm text-black mt-1">Wellness</span>
-      </div>
-      <div class="brand-item flex flex-col items-center max-w-[150px] bg-[#f9f9f9] rounded-xl p-4 shadow">
-        <img src="science-diet.png" alt="Hill's Science Diet" class="max-w-full mb-2">
-        <span class="text-sm text-black mt-1">Hill's Science Diet</span>
-      </div>
-      <div class="brand-item flex flex-col items-center max-w-[150px] bg-[#f9f9f9] rounded-xl p-4 shadow">
-        <img src="stella.png" alt="Stella & Chewy's" class="max-w-full mb-2">
-        <span class="text-sm text-black mt-1">Stella & Chewy's</span>
-      </div>
-      <div class="brand-item flex flex-col items-center max-w-[150px] bg-[#f9f9f9] rounded-xl p-4 shadow">
-        <img src="chuckit.png" alt="Chuckit!" class="max-w-full mb-2">
-        <span class="text-sm text-black mt-1">Chuckit!</span>
-      </div>
-      <div class="brand-item flex flex-col items-center max-w-[150px] bg-[#f9f9f9] rounded-xl p-4 shadow">
-        <img src="woof.png" alt="WOOF" class="max-w-full mb-2">
-        <span class="text-sm text-black mt-1">WOOF</span>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Footer -->
-  <footer class="bg-[#0a3b4a] text-white text-center py-8 px-5 text-sm">
-    <p>&copy; 2025 Haustiery. All rights reserved. | Designed with <i class="fas fa-heart"></i> for pets and pet lovers.</p>
-  </footer>
-</body>
+      // Product carousel scrolling
+      function scrollProducts(direction) {
+        const productList = document.getElementById('product-list');
+        const scrollAmount = 200; // Adjust as needed
+        productList.scrollBy({
+          left: direction * scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+    </script>
+  </body>
 </html>
