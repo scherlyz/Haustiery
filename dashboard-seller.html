@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dashboard Seller- Haustiery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Poppins', sans-serif;
+            }
+        }
+        @layer components {
+            .glow-paw {
+                color: #f26a1b;
+                font-size: 22px;
+                animation: glow 2s infinite alternate;
+                text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+            }
+            @keyframes glow {
+                from {
+                    text-shadow: 0 0 5px #f26a1b, 0 0 10px #f26a1b, 0 0 15px #f26a1b;
+                }
+                to {
+                    text-shadow: 0 0 10px #ff944d, 0 0 20px #ff944d, 0 0 30px #ff944d;
+                }
+            }
+            .nav-link.active::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                height: 2px;
+                width: 100%;
+                background: orange;
+            }
+            .dashboard-card {
+                @apply bg-white p-4 md:p-6 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl;
+            }
+            .dashboard-button {
+                @apply bg-[#f26a1b] text-white py-2 px-4 rounded-full text-sm font-bold hover:bg-[#ff7a3d] transition-colors duration-300 w-full;
+            }
+            .section-title {
+                @apply text-xl md:text-2xl font-bold text-[#0a3b4a] mb-5 md:mb-6 flex items-center gap-2;
+            }
+            /* Styles from dashboard.html for sidebar and main content layout */
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none; /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden bg-gradient-to-r from-[#f8f0db] via-[#e6dcc5] to-[#0a3b4a] flex">
+
+    <aside class="fixed inset-y-0 left-0 flex-wrap items-center justify-between block w-64 p-4 my-4 overflow-y-auto bg-white border-0 shadow-xl rounded-2xl z-50 transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0" id="sidenav-main">
+        <div class="h-19">
+            <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 lg:hidden" onclick="toggleSidenav()"></i>
+            <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" href="index.html">
+                <i class="fas fa-paw glow-paw"></i>
+                <span class="ml-1 font-semibold text-xl">Haustiery</span>
+            </a>
+        </div>
+        <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
+        <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
+            <ul class="flex flex-col pl-0 mb-0">
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 bg-orange-100 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-[#f26a1b] transition-colors" href="dashboard-seller.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-home text-base leading-normal text-[#f26a1b]"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Dashboard</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="seller-order-management.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-box-open text-base leading-normal text-orange-500"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Order Management</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="seller-product-listings.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-boxes text-base leading-normal text-emerald-500"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Product Listings</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="seller-sales-reports.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-chart-line text-base leading-normal text-purple-500"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Sales Reports</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="seller-store-settings.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-store text-base leading-normal text-pink-500"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">My Store Settings</span>
+                    </a>
+                </li>
+                <li class="mt-0.5 w-full">
+                    <a class="py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors text-slate-700 hover:bg-gray-100 rounded-lg" href="seller-customer-inquiries.html">
+                        <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center">
+                            <i class="fas fa-envelope text-base leading-normal text-blue-500"></i>
+                        </div>
+                        <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Customer Inquiries</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out lg:ml-64 rounded-xl flex-1">
+        <nav class="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start" navbar-main navbar-scroll="false">
+            <div class="flex items-center justify-between w-full px-4 py-1 mx-auto flex-wrap-inherit">
+                <nav>
+                    <ol class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
+                        <li class="text-sm leading-normal">
+                            <a class="text-white opacity-50" href="javascript:;">Pages</a>
+                        </li>
+                        <li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']" aria-current="page">Seller Dashboard</li>
+                    </ol>
+                    <h6 class="mb-0 font-bold text-white capitalize">Seller Dashboard</h6>
+                </nav>
+
+                <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
+                    <div class="flex items-center md:ml-auto md:pr-4">
+                        <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease">
+                            <span class="text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <input type="text" class="pl-9 text-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow" placeholder="Type here..." />
+                        </div>
+                    </div>
+                    <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
+                        <li class="flex items-center">
+                            <div class="relative" x-data="{ open: false }" @click.away="open = false">
+                                <button @click="open = !open" class="flex items-center text-white hover:text-orange-300 transition-colors duration-200 focus:outline-none">
+                                    <i class="fa fa-user text-xl sm:mr-1"></i>
+                                    <span class="hidden sm:inline font-medium mr-2">Sherly</span>
+                                    <i class="fas fa-chevron-down text-xs" :class="{'rotate-180': open, 'rotate-0': !open}"></i>
+                                </button>
+                                <div x-show="open" x-transition:enter="transition ease-out duration-100 transform" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75 transform" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 origin-top-right">
+                                    <a href="seller-dashboard.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 nav-link active">Dashboard</a>
+                                    <a href="seller-store-settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Store Settings</a>
+                                    <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-t border-gray-100 mt-1 pt-1">Logout</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="flex items-center pl-4 lg:hidden">
+                            <a href="javascript:;" class="block p-0 text-sm text-white transition-all ease-nav-brand" onclick="toggleSidenav()">
+                                <div class="w-4.5 overflow-hidden">
+                                    <i class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"></i>
+                                    <i class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"></i>
+                                    <i class="ease relative block h-0.5 rounded-sm bg-white transition-all"></i>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="flex items-center px-4">
+                            <a href="javascript:;" class="p-0 text-sm text-white transition-all ease-nav-brand">
+                                <i class="cursor-pointer fa fa-cog"></i>
+                            </a>
+                        </li>
+                        <li class="relative flex items-center pr-2">
+                            <p class="hidden transform-dropdown-show"></p>
+                            <a href="javascript:;" class="block p-0 text-sm text-white transition-all ease-nav-brand" dropdown-trigger aria-expanded="false">
+                                <i class="cursor-pointer fa fa-bell"></i>
+                            </a>
+                            <ul dropdown-menu class="text-sm transform-dropdown before:font-awesome before:leading-default before:duration-350 before:ease lg:shadow-3xl duration-250 min-w-44 before:sm:right-8 before:text-5.5 pointer-events-none absolute right-0 top-0 z-50 origin-top list-none rounded-lg border-0 border-solid border-transparent bg-white bg-clip-padding px-2 py-4 text-left text-slate-500 opacity-0 transition-all before:absolute before:right-2 before:left-auto before:top-0 before:z-50 before:inline-block before:font-normal before:text-white before:antialiased before:transition-all before:content-['\f0d8'] sm:-mr-6 lg:absolute lg:right-0 lg:left-auto lg:mt-2 lg:block lg:cursor-pointer">
+                                <li class="relative mb-2">
+                                    <a class="ease py-1.2 clear-both block w-full whitespace-nowrap rounded-lg bg-transparent px-4 duration-300 hover:bg-gray-200 hover:text-slate-700 lg:transition-colors" href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="my-auto">
+                                                <img src="matthias.png" class="inline-flex items-center justify-center mr-4 text-sm text-white h-9 w-9 max-w-none rounded-xl" />
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mb-1 text-sm font-normal leading-normal"><span class="font-semibold">New Order</span> #HAU20250610-003</h6>
+                                                <p class="mb-0 text-xs leading-tight text-slate-400">
+                                                    <i class="mr-1 fa fa-clock"></i>
+                                                    13 minutes ago
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="relative mb-2">
+                                    <a class="ease py-1.2 clear-both block w-full whitespace-nowrap rounded-lg px-4 transition-colors duration-300 hover:bg-gray-200 hover:text-slate-700" href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="my-auto">
+                                                <img src="redvelvet.png" class="inline-flex items-center justify-center mr-4 text-sm text-white bg-gradient-to-tl from-zinc-800 to-zinc-700 h-9 w-9 max-w-none rounded-xl" />
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mb-1 text-sm font-normal leading-normal"><span class="font-semibold">Product Restock</span> Dry Food Chicken</h6>
+                                                <p class="mb-0 text-xs leading-tight text-slate-400">
+                                                    <i class="mr-1 fa fa-clock"></i>
+                                                    1 day
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="relative">
+                                    <a class="ease py-1.2 clear-both block w-full whitespace-nowrap rounded-lg px-4 transition-colors duration-300 hover:bg-gray-200 hover:text-slate-700" href="javascript:;">
+                                        <div class="flex py-1">
+                                            <div class="inline-flex items-center justify-center my-auto mr-4 text-sm text-white transition-all duration-200 ease-nav-brand bg-gradient-to-tl from-slate-600 to-slate-300 h-9 w-9 rounded-xl">
+                                                <i class="fas fa-comment-dots"></i>
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mb-1 text-sm font-normal leading-normal">New Customer Inquiry</h6>
+                                                <p class="mb-0 text-xs leading-tight text-slate-400">
+                                                    <i class="mr-1 fa fa-clock"></i>
+                                                    2 days
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="w-full px-6 py-6 mx-auto">
+            <h1 class="text-2xl md:text-4xl font-bold text-[#0a3b4a] mb-6 text-center">Hello, Sherly! Welcome Back!</h1>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+                <div class="dashboard-card flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-xs md:text-sm">Today's Sales</p>
+                        <h2 class="text-2xl md:text-3xl font-bold text-[#f26a1b]">$1,250</h2>
+                    </div>
+                    <i class="fas fa-hand-holding-usd text-3xl md:text-4xl text-gray-300"></i>
+                </div>
+                <div class="dashboard-card flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-xs md:text-sm">Total Orders</p>
+                        <h2 class="text-2xl md:text-3xl font-bold text-[#00aa8f]">15</h2>
+                    </div>
+                    <i class="fas fa-receipt text-3xl md:text-4xl text-gray-300"></i>
+                </div>
+                <div class="dashboard-card flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-xs md:text-sm">Products Listed</p>
+                        <h2 class="text-2xl md:text-3xl font-bold text-[#0a3b4a]">120</h2>
+                    </div>
+                    <i class="fas fa-boxes text-3xl md:text-4xl text-gray-300"></i>
+                </div>
+                <div class="dashboard-card flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-xs md:text-sm">Pending Orders</p>
+                        <h2 class="text-2xl md:text-3xl font-bold text-[#e8a34b]">5</h2>
+                    </div>
+                    <i class="fas fa-truck text-3xl md:text-4xl text-gray-300"></i>
+                </div>
+            </div>
+
+            <hr class="my-8 border-gray-200">
+
+            <div class="flex flex-wrap mt-6 -mx-3">
+                <div class="w-full max-w-full px-3 mt-0 lg:w-7/12 lg:flex-none">
+                    <div class="border-black/12.5 shadow-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border dashboard-card">
+                        <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid p-6 pt-4 pb-0">
+                            <h2 class="section-title"><i class="fas fa-chart-bar"></i> Sales Overview</h2>
+                            <p class="mb-0 text-sm leading-normal text-slate-700 opacity-60">
+                                <i class="fa fa-arrow-up text-emerald-500"></i>
+                                <span class="font-semibold">12% higher</span> this month
+                            </p>
+                        </div>
+                        <div class="flex-auto p-4">
+                            <div>
+                                <canvas id="chart-line" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full max-w-full px-3 lg:w-5/12 lg:flex-none mt-6 lg:mt-0">
+                    <div class="border-black/12.5 shadow-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border dashboard-card">
+                        <div class="p-4 pb-0 rounded-t-4">
+                            <h2 class="section-title"><i class="fas fa-star"></i> Top Selling Products</h2>
+                        </div>
+                        <div class="flex-auto p-4">
+                            <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+                                <li class="relative flex justify-between py-2 pr-4 mb-2 border-0 rounded-t-lg rounded-xl text-inherit">
+                                    <div class="flex items-center">
+                                        <img src="dogfood1.png" alt="Dry Food Chicken" class="w-10 h-10 mr-4 rounded-lg object-contain">
+                                        <div class="flex flex-col">
+                                            <h6 class="mb-1 text-sm leading-normal text-slate-700">Dry Food Chicken</h6>
+                                            <span class="text-xs leading-tight text-slate-700 opacity-80">Sales: <span class="font-semibold">350 units</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <p class="text-[#f26a1b] font-bold text-sm">$50.00</p>
+                                        <button class="group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all"><i class="fas fa-chevron-right ease-bounce text-2xs group-hover:translate-x-1.25 transition-all duration-200" aria-hidden="true"></i></button>
+                                    </div>
+                                </li>
+                                <li class="relative flex justify-between py-2 pr-4 mb-2 border-0 rounded-xl text-inherit">
+                                    <div class="flex items-center">
+                                        <img src="food1.png" alt="Wet Food Salmon" class="w-10 h-10 mr-4 rounded-lg object-contain">
+                                        <div class="flex flex-col">
+                                            <h6 class="mb-1 text-sm leading-normal text-slate-700">Wet Food Salmon</h6>
+                                            <span class="text-xs leading-tight text-slate-700 opacity-80">Sales: <span class="font-semibold">280 units</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <p class="text-[#f26a1b] font-bold text-sm">$40.00</p>
+                                        <button class="group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all"><i class="fas fa-chevron-right ease-bounce text-2xs group-hover:translate-x-1.25 transition-all duration-200" aria-hidden="true"></i></button>
+                                    </div>
+                                </li>
+                                <li class="relative flex justify-between py-2 pr-4 border-0 rounded-b-lg rounded-xl text-inherit">
+                                    <div class="flex items-center">
+                                        <img src="brush.png" alt="Pet Grooming Brush" class="w-10 h-10 mr-4 rounded-lg object-contain">
+                                        <div class="flex flex-col">
+                                            <h6 class="mb-1 text-sm leading-normal text-slate-700">Pet Grooming Brush</h6>
+                                            <span class="text-xs leading-tight text-slate-700 opacity-80">Sales: <span class="font-semibold">210 units</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <p class="text-[#f26a1b] font-bold text-sm">$25.00</p>
+                                        <button class="group ease-in leading-pro text-xs rounded-3.5xl p-1.2 h-6.5 w-6.5 mx-0 my-auto inline-block cursor-pointer border-0 bg-transparent text-center align-middle font-bold text-slate-700 shadow-none transition-all"><i class="fas fa-chevron-right ease-bounce text-2xs group-hover:translate-x-1.25 transition-all duration-200" aria-hidden="true"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                            <a href="seller-product-listings.html" class="dashboard-button mt-6 no-underline text-center">View All Products</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-8 border-gray-200">
+
+            <div class="dashboard-card mb-8">
+                <h2 class="section-title"><i class="fas fa-clipboard-list"></i> Latest Orders</h2>
+                <div class="space-y-4">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <div class="mb-2 md:mb-0">
+                            <p class="text-gray-800 font-semibold text-sm md:text-base">Order #HAU20250623-001</p>
+                            <p class="text-gray-600 text-xs md:text-sm">Date: June 23, 2025</p>
+                            <p class="text-gray-600 text-xs md:text-sm">Total: <span class="font-bold text-[#f26a1b]">$85.00</span></p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2 py-0.5 bg-red-100 text-red-700 text-xs font-semibold rounded-full">Pending</span>
+                            <a href="seller-order-details.html" class="bg-[#f26a1b] text-white py-1 px-3 rounded-full text-xs hover:bg-[#ff7a3d] transition-colors duration-300 no-underline">Manage Order</a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <div class="mb-2 md:mb-0">
+                            <p class="text-gray-800 font-semibold text-sm md:text-base">Order #HAU20250622-002</p>
+                            <p class="text-gray-600 text-xs md:text-sm">Date: June 22, 2025</p>
+                            <p class="text-gray-600 text-xs md:text-sm">Total: <span class="font-bold text-[#f26a1b]">$150.00</span></p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2 py-0.5 bg-yellow-100 text-yellow-700 text-xs font-semibold rounded-full">Processing</span>
+                            <a href="seller-order-details.html" class="bg-[#f26a1b] text-white py-1 px-3 rounded-full text-xs hover:bg-[#ff7a3d] transition-colors duration-300 no-underline">Manage Order</a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <div class="mb-2 md:mb-0">
+                            <p class="text-gray-800 font-semibold text-sm md:text-base">Order #HAU20250620-001</p>
+                            <p class="text-gray-600 text-xs md:text-sm">Date: June 20, 2025</p>
+                            <p class="text-gray-600 text-xs md:text-sm">Total: <span class="font-bold text-[#f26a1b]">$45.50</span></p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs font-semibold rounded-full">Shipped</span>
+                            <a href="seller-order-details.html" class="bg-[#2ecc71] text-white py-1 px-3 rounded-full text-xs hover:bg-[#27ae60] transition-colors duration-300 no-underline">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="seller-order-management.html" class="dashboard-button mt-6 no-underline text-center">View All Orders</a>
+            </div>
+
+            <hr class="my-8 border-gray-200">
+
+            <div class="dashboard-card">
+                <h2 class="section-title"><i class="fas fa-cogs"></i> Quick Actions</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <button class="bg-gray-100 border border-gray-300 text-gray-800 py-2.5 px-4 rounded-xl text-sm md:text-base font-medium flex items-center justify-center gap-2 hover:bg-gray-200 transition-colors duration-200 text-center">
+                        <i class="fas fa-plus-circle text-base md:text-lg"></i> Add New Product
+                    </button>
+                    <button class="bg-gray-100 border border-gray-300 text-gray-800 py-2.5 px-4 rounded-xl text-sm md:text-base font-medium flex items-center justify-center gap-2 hover:bg-gray-200 transition-colors duration-200 text-center">
+                        <i class="fas fa-store-alt text-base md:text-lg"></i> Update Store Info
+                    </button>
+                    <button class="bg-gray-100 border border-gray-300 text-gray-800 py-2.5 px-4 rounded-xl text-sm md:text-base font-medium flex items-center justify-center gap-2 hover:bg-gray-200 transition-colors duration-200 text-center">
+                        <i class="fas fa-bullhorn text-base md:text-lg"></i> Manage Promotions
+                    </button>
+                    <button class="bg-gray-100 border border-gray-300 text-gray-800 py-2.5 px-4 rounded-xl text-sm md:text-base font-medium flex items-center justify-center gap-2 hover:bg-gray-200 transition-colors duration-200 text-center">
+                        <i class="fas fa-chart-pie text-base md:text-lg"></i> View Store Insights
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="pt-4">
+            <div class="w-full px-6 mx-auto">
+                <div class="flex flex-wrap items-center -mx-3 lg:justify-between">
+                    <div class="w-full max-w-full px-3 mt-0 mb-6 shrink-0 lg:mb-0 lg:w-1/2 lg:flex-none">
+                        <div class="text-sm leading-normal text-center text-slate-500 lg:text-left">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear() + ",");
+                            </script>
+                            made with <i class="fa fa-heart"></i> by
+                            <a href="https://www.creative-tim.com" class="font-semibold text-slate-700" target="_blank">Haustiery Team</a>
+                            for the better pet shop.
+                        </div>
+                    </div>
+                    <div class="w-full max-w-full px-3 mt-0 shrink-0 lg:w-1/2 lg:flex-none">
+                        <ul class="flex flex-wrap justify-center pl-0 mb-0 list-none lg:justify-end">
+                            <li class="nav-item">
+                                <a href="#" class="block px-4 pt-0 pb-1 text-sm font-semibold transition-colors ease-in-out text-slate-500" target="_blank">Haustiery Team</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="block px-4 pt-0 pb-1 text-sm font-semibold transition-colors ease-in-out text-slate-500" target="_blank">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="block px-4 pt-0 pb-1 text-sm font-semibold transition-colors ease-in-out text-slate-500" target="_blank">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="block px-4 pt-0 pb-1 pr-0 text-sm font-semibold transition-colors ease-in-out text-slate-500" target="_blank">License</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Chart.js for Sales Overview
+        var ctx1 = document.getElementById("chart-line").getContext("2d");
+        var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+        gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
+        gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+        gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
+        new Chart(ctx1, {
+            type: "line",
+            data: {
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"],
+                datasets: [{
+                    label: "Sales",
+                    tension: 0.4,
+                    borderWidth: 0,
+                    pointRadius: 0,
+                    borderColor: "#cb0c9f",
+                    backgroundColor: gradientStroke1,
+                    fill: true,
+                    data: [1200, 900, 2500, 1800, 3000, 2100, 3500, 2800, 4000],
+                    maxBarThickness: 6
+                }],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false,
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index',
+                },
+                scales: {
+                    y: {
+                        grid: {
+                            drawBorder: false,
+                            display: true,
+                            drawOnChartArea: true,
+                            drawTicks: false,
+                            borderDash: [5, 5]
+                        },
+                        ticks: {
+                            display: true,
+                            padding: 10,
+                            color: '#b2b9bf',
+                            font: {
+                                size: 11,
+                                family: "Poppins",
+                                style: 'normal',
+                                lineHeight: 2
+                            },
+                        }
+                    },
+                    x: {
+                        grid: {
+                            drawBorder: false,
+                            display: false,
+                            drawOnChartArea: false,
+                            drawTicks: false,
+                            borderDash: [5, 5]
+                        },
+                        ticks: {
+                            display: true,
+                            color: '#b2b9bf',
+                            padding: 20,
+                            font: {
+                                size: 11,
+                                family: "Poppins",
+                                style: 'normal',
+                                lineHeight: 2
+                            },
+                        }
+                    },
+                },
+            },
+        });
+    </script>
+    <script>
+        // Toggle Sidenav (from dashboard.html)
+        function toggleSidenav() {
+            const sidenav = document.getElementById('sidenav-main');
+            sidenav.classList.toggle('-translate-x-full');
+            sidenav.classList.toggle('translate-x-0');
+        }
+
+        // Dropdown functionality for notifications and user menu (adapted from dashboard.html and dashboard-user.html)
+        document.querySelectorAll('[dropdown-trigger]').forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const dropdownMenu = this.nextElementSibling;
+                dropdownMenu.classList.toggle('opacity-0');
+                dropdownMenu.classList.toggle('pointer-events-none');
+                dropdownMenu.classList.toggle('transform-dropdown-show');
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('[dropdown-trigger]') && !event.target.closest('[dropdown-menu]')) {
+                document.querySelectorAll('[dropdown-menu]').forEach(menu => {
+                    menu.classList.add('opacity-0');
+                    menu.classList.add('pointer-events-none');
+                    menu.classList.remove('transform-dropdown-show');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
