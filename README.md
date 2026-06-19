@@ -1,7 +1,7 @@
 # Haustiery 🐾
 
 ## Deskripsi Proyek
-**Haustiery** adalah prototipe antarmuka pengguna (UI) berbasis web yang dirancang khusus untuk platform *e-commerce* dan layanan hewan peliharaan (*pet shop & care*). Proyek ini dikembangkan sebagai pemenuhan **Project Ujian Akhir Semester (UAS) mata kuliah Workshop UI**.
+**Haustiery** adalah prototipe antarmuka pengguna (UI) berbasis web yang dirancang khusus untuk platform *e-commerce* dan layanan hewan peliharaan (*pet shop & care*). 
 
 Fokus utama dari proyek ini adalah menyajikan pengalaman pengguna (UX) yang intuitif dan desain antarmuka yang bersih (*clean design*). Sistem merangkum seluruh alur pengguna secara visual, mulai dari penjelajahan katalog produk, manajemen keranjang belanja, hingga penyediaan *dashboard* khusus yang membedakan hak akses antara pelanggan, penjual, dan administrator.
 
